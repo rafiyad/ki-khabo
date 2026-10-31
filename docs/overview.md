@@ -1,33 +1,38 @@
 # Overview
 
-## What is ki-khabo?
+## What is কি খাবো?
 
-"Ki khabo" (কি খাবো) means "What should I eat?" in Bangla.
+"কি খাবো?" (Ki khabo?) means "What should I eat?" in Bangla.
 
-ki-khabo is a simple, fun website that helps you decide what to eat when you can't make up your mind. It's built with Next.js and hosted on Vercel.
+It's a funny food-choosing app for people who don't know what they want to eat. You answer a few quick questions (gender, age, mood, meal time, budget and restrictions) and get one dish at a time, with a funny Bengali explanation, a cartoon biryani-pot mascot, and a meme card to send to friends. You get 3 chances a day; after that, the app makes the decision for you. 😄
 
-Pick a mood if you like (veg, spicy, street food…), press **"Tell me what to eat!"**, watch the emojis shuffle, and get a suggestion. Love it or ban it, and ki-khabo remembers that next time, right in your browser.
+There's also a food wheel, a food battle and an "I can't wait!" emergency button.
+
+The full product brief is in [brief.md](brief.md).
 
 ## Who is it for?
 
-Anyone who's hungry and can't decide: friends arguing about lunch, or someone staring at the fridge.
+University students, office workers, friend groups, couples and people living away from family in Bangladesh who can't decide what to eat.
 
 ## Goals
 
-- [x] Fun and quick: a suggestion in one or two taps
-- [ ] Works well on mobile (designed mobile-first; still to test on a real phone)
-- [x] Loads fast and costs nothing to host (fully static page)
-- [x] Easy to add new foods (one line in `data/foods.ts`)
-- [x] Remembers your taste on your device, with no sign-up ([feature](features/on-device-memory.md))
+- [x] Understandable and fun within 5 seconds, with no sign-up
+- [x] Personal: mood, budget, time and allergies shape the suggestion
+- [x] Shareable: a meme card for WhatsApp/Facebook/Instagram
+- [x] Free to host, installable on phones, works offline
+- [x] Accessible: Lighthouse accessibility 100
 
 ## Non-goals (for now)
 
-- User accounts or logins
-- Ordering food or restaurant integrations
-- A database or backend
+- Accounts, logins, or any backend
+- Ordering food or restaurant listings
+- Guessing anything from gender or age
 
 ## Glossary
 
 | Term | Meaning |
 | --- | --- |
-| Ki khabo | "What should I eat?" in Bangla |
+| কি খাবো? | "What should I eat?" in Bangla; the app's name |
+| Final decision (শেষ সিদ্ধান্ত) | The 3rd suggestion of the day, locked until midnight |
+| Roast mode | The funny banner shown with the final decision |
+| Masala, haldi, morich, dhonepata | The design system's orange, yellow, red and green |

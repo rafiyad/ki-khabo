@@ -1,7 +1,7 @@
 # Sprint 1: Planning and project setup
 
 **Dates:** TBD
-**Status:** In progress
+**Status:** Done (superseded by [Sprint 2](sprint-02.md))
 
 ## Goal
 
@@ -18,7 +18,7 @@ Decide what ki-khabo is and what it's built with, then build the MVP and deploy 
 - [x] Write the main experience in [overview.md](../overview.md)
 - [x] List MVP features in [features/](../features/)
 - [x] Scaffold the Next.js app
-- [ ] First deploy to Vercel
+- [ ] ~~First deploy to Vercel~~ (moved to Sprint 2)
 
 ## Added mid-sprint
 
@@ -27,6 +27,8 @@ Decide what ki-khabo is and what it's built with, then build the MVP and deploy 
 - [x] Unit tests for `lib/` and a browser check of the acceptance criteria
 
 ## Outcome
+
+A first Next.js version (random food picker with on-device memory) was built and tested locally. Before it was committed or deployed, the product direction changed to the "কি খাবো?" brief and prototype, so it was replaced by the Vite rebuild in Sprint 2 ([0004](../decisions/0004-vite-react-pwa.md)).
 
 ## Retro
 

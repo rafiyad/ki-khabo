@@ -4,32 +4,33 @@ _Last updated: 2026-10-31_
 
 ## Summary
 
-The MVP is built and works locally: a fun food picker with filters, a Bangla/English toggle and on-device memory. It is **not deployed yet** and **not committed yet**.
+The **কি খাবো?** MVP is built and verified locally: a Vite + React installable web app with the full quiz, recommendation engine, result with roast, daily limits, food wheel, food battle and share card. It is **not committed or deployed yet**.
 
 ## Done
 
-- [x] Repository and `docs/` structure
-- [x] Tech stack, hosting and data approach decided ([decisions/](decisions/))
-- [x] Next.js 16.4 app scaffolded (TypeScript, Tailwind, ESLint, Node 24)
-- [x] Food list: 33 foods with Bangla names and tags (`data/foods.ts`)
-- [x] Picker: roll animation (skipped if the user prefers reduced motion), filters, "nothing matches" state
-- [x] [On-device personal memory](features/on-device-memory.md)
-- [x] Bangla / English toggle (saved in memory)
-- [x] Vercel Analytics component added (only active once deployed on Vercel)
-- [x] Unit tests: 14 passing (`npm test`)
-- [x] `npm run lint` and `npm run build` clean; `/` builds as a fully static page
+- [x] Product brief with all MVP decisions ([brief.md](brief.md))
+- [x] Stack: Vite + React + TypeScript + Tailwind v4 + Motion; no backend ([0004](decisions/0004-vite-react-pwa.md), [0005](decisions/0005-no-backend.md))
+- [x] All MVP features: see [features/](features/README.md)
+- [x] 47 dishes with prices, meals, moods, categories, veg and restricted ingredients
+- [x] All Bengali copy in `src/content/bn.ts`, reviewed against the humor rule
+- [x] Unit tests: 47 passing (`npm test`)
+- [x] Browser test (headless, phone size): quiz, limits, final + safety exception, midnight reset, wheel, battle, share PNG, keyboard, reduced motion, blocked storage
+- [x] Lighthouse (mobile): accessibility 100 · best practices 100 · SEO 100 · performance 84–92
+- [x] axe-core: no violations on any screen; every tap target ≥ 48px
 
 ## In progress
 
-- [ ] First commit and push to GitHub
+- [ ] Commit and push to GitHub
 - [ ] First deploy to Vercel
+- [ ] Check on real phones
 
 ## Known issues
 
-- Saved filters and language show defaults for a split second after the page loads (see the hydration trade-off in [on-device-memory.md](features/on-device-memory.md#how-it-works)).
-- Locally, `/_vercel/insights/script.js` returns 404. That's expected: Vercel only serves it on deployed sites.
-- Local builds warn about a stray `~/package-lock.json` outside the repo. This doesn't affect Vercel. Delete that file, or set `turbopack.root` in `next.config.ts`, to silence it.
+- `npm audit` reports 10 moderate/low issues in **build-time** dependencies of `vite-plugin-pwa` (`workbox-build` → `ejs`/`jake`). Nothing ships to users. Re-check when the plugin updates.
+- Performance on Lighthouse's simulated slow 4G is 84 on the landing page (LCP 4.0s), mostly fonts and the React/Router/Motion bundle.
+- The male mood list isn't defined yet; men see all moods.
+- Food prices and ingredients are typical Dhaka values, not checked with restaurants.
 
 ## Current sprint
 
-[Sprint 1](sprints/sprint-01.md)
+[Sprint 2](sprints/sprint-02.md)
