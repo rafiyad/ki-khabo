@@ -2,7 +2,7 @@
 
 **খাবার আছে, টাকা আছে, ক্ষুধাও আছে — কিন্তু কী খাবো বুঝতেছি না!**
 
-A funny food-choosing app for people who don't know what to eat. Answer a few questions (gender, age, mood, meal time, budget) and get a dish with a funny Bengali explanation, a food wheel, a food battle and a shareable meme card. 3 chances a day. No sign-up.
+A funny food-choosing app for people who don't know what to eat. Answer a few questions (gender, age, mood, meal time, budget) and get a dish with a funny Bengali explanation and a cigarette-pack style health warning. There's also a food wheel, a food battle, a shareable meme card, a group mode for friends, a "guess what I'll eat" challenge link, a daily food horoscope and a weekly report. 3 chances a day. No sign-up.
 
 An installable web app built with Vite, React, TypeScript and Tailwind CSS. It's hosted free on Vercel, with no backend.
 

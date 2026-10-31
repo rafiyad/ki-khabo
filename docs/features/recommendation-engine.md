@@ -18,6 +18,7 @@ Picks one dish from the user's answers. Matches are good, but the same answers d
 2. **Meal time:** keep dishes for the chosen meal, unless fewer than 3 remain.
 3. **Budget:** keep dishes at or under the budget. If none, use the 3 cheapest.
 4. **Diversity:** skip dishes shown this visit and the last 5 on this device, while others remain.
+   **Soft preference** (optional `prefer`): keep preferred dishes while any remain. Used for lighter food late at night and for group vetoes.
 5. **Score** (each part 0–100): `0.35·Mood + 0.25·Budget + 0.20·Time + 0.20·Preference`
    - Mood: the dish's weight for that mood (0 if not listed)
    - Budget: 100 within budget; otherwise scaled down (budget ÷ price)

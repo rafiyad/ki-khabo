@@ -15,4 +15,5 @@ export function missingBefore(answers: Answers, stepIndex: number): string | nul
   return missing ? missing.path : null;
 }
 
-export const isComplete = (answers: Answers) => missingBefore(answers, STEPS.length) === null;
+/** Enough to pick a dish: the engine never uses gender or age, so quick mode can skip them. */
+export const isReady = (answers: Answers) => answers.mood !== null && answers.meal !== null && answers.budget !== null;

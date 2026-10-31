@@ -18,6 +18,7 @@ import { pickOne, type Rng } from "@/lib/rng";
 //   1. Hard rules: diet, restrictions/allergies, rejected dishes. Never relaxed.
 //   2. Soft eligibility: meal time and budget. Relaxed only if too few dishes remain.
 //   3. Diversity: skip recently shown dishes while others remain.
+//      Soft preference (late night, group vetoes): keep preferred dishes while any remain.
 //   4. Score: 0.35·Mood + 0.25·Budget + 0.20·Time + 0.20·Preference (each 0–100).
 //   5. Weighted random pick among the top results.
 
@@ -67,6 +68,8 @@ export type RecommendOptions = {
   exclude?: readonly string[];
   /** Dish ids the user rejected. A hard rule. */
   rejected?: readonly string[];
+  /** Soft preference: only preferred dishes are used while at least one remains. */
+  prefer?: (food: Food) => boolean;
 };
 
 export function budgetMax(budget: BudgetId | null): number {
@@ -130,6 +133,11 @@ export function recommend(foods: readonly Food[], answers: Answers, options: Rec
   const exclude = new Set(options.exclude ?? []);
   const fresh = pool.filter((f) => !exclude.has(f.id));
   if (fresh.length > 0) pool = fresh;
+
+  if (options.prefer) {
+    const preferred = pool.filter(options.prefer);
+    if (preferred.length > 0) pool = preferred;
+  }
 
   const top = pool
     .map((food) => ({ food, total: scoreFood(food, answers).total }))

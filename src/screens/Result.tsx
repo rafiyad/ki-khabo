@@ -4,16 +4,19 @@ import { Chip } from "@/components/Chip";
 import { Confetti } from "@/components/Confetti";
 import { useConfetti } from "@/components/use-confetti";
 import { FoodCard } from "@/components/FoodCard";
+import { HealthMeter, HealthWarning } from "@/components/HealthNote";
 import { Heading } from "@/components/Heading";
 import { Mascot, type MascotExpression } from "@/components/Mascot";
 import { ProgressBar } from "@/components/ProgressBar";
 import { bn } from "@/content/bn";
-import { getFood } from "@/data";
+import { catalog, getFood, getHealth } from "@/data";
 import { CARE_MOODS, MOODS } from "@/data/options";
 import { bnDigits } from "@/lib/bn-number";
 import { resultCopy, roastLine } from "@/lib/humor";
+import { healthNudge, isLocalHero, socialNudge } from "@/lib/nudges";
 import { describe } from "@/lib/recommend";
 import { pickOne, seeded } from "@/lib/rng";
+import { seasonFor } from "@/lib/season";
 import { useAppState, type CurrentPick } from "@/state/store";
 
 export function Result() {
@@ -42,23 +45,49 @@ function NoResult() {
 }
 
 function ResultView({ current }: { current: CurrentPick }) {
-  const { answers, next, accept, suggestionsLeft } = useAppState();
+  const { answers, next, accept, suggestionsLeft, accepted: history } = useAppState();
   const [accepted, setAccepted] = useState(false);
+  const [now] = useState(() => new Date());
   const { pieces, fire } = useConfetti();
 
   const food = getFood(current.foodId)!;
+  const health = getHealth(food.id);
   const rec = describe(food, answers);
   const rng = seeded(current.seed);
   const copy = resultCopy(rec, answers, rng);
+  // Separate seeds so the nudges don't change the funny copy above.
+  const social = socialNudge(food, health, answers.mood, seeded(current.seed + 1));
+  // Read history once, so accepting this dish doesn't count it twice in the streak.
+  const [notice] = useState(() =>
+    healthNudge({
+      food,
+      now,
+      accepted: history,
+      foods: catalog.foods,
+      answers,
+      getFood,
+      getHealth,
+      rng: seeded(current.seed + 2),
+    }),
+  );
   const mood = MOODS.find((m) => m.id === answers.mood);
   const t = bn.result;
+  const season = seasonFor(now);
 
   const headline = current.source === "emergency" ? t.emergencyHeadline(food.name) : copy.headline;
-  const badge = current.source === "wheel" ? t.fromWheel : copy.badge;
+  const badge =
+    current.source === "wheel"
+      ? t.fromWheel
+      : current.source === "horoscope"
+        ? t.fromHoroscope
+        : current.source === "season" && season
+          ? bn.season[season].badge
+          : copy.badge;
+  const usesChances = current.source !== "wheel" && current.source !== "season" && current.source !== "horoscope";
 
   let expression: MascotExpression = "surprised";
   let bubble = current.source === "emergency" ? t.emergencyBubble : copy.bubble;
-  if (accepted) [expression, bubble] = ["happy", t.bubbleAccept];
+  if (accepted) [expression, bubble] = ["happy", pickOne(t.acceptBubbles, seeded(current.seed + 3))];
   else if (current.final) [expression, bubble] = ["happy", t.bubbleFinal];
   else if (current.source === "reject") [expression, bubble] = ["sad", t.bubbleReject];
   else if (current.source === "more") [expression, bubble] = ["confused", t.bubbleMore];
@@ -94,10 +123,11 @@ function ResultView({ current }: { current: CurrentPick }) {
         <div className="mb-3 flex flex-wrap gap-2">
           <Chip>{t.price(bnDigits(food.price))}</Chip>
           <Chip tone="peach">{mood ? `${mood.emoji} ${mood.label}` : t.luck}</Chip>
-          {!current.final && current.source !== "wheel" && (
-            <Chip tone="white">{t.chancesLeft(bnDigits(suggestionsLeft))}</Chip>
-          )}
+          {!current.final && usesChances && <Chip tone="white">{t.chancesLeft(bnDigits(suggestionsLeft))}</Chip>}
+          {isLocalHero(food) && <Chip tone="dhonepata">{bn.social.localHero}</Chip>}
         </div>
+
+        <HealthWarning health={health} className="mb-3" />
 
         <h2 className="mb-1 font-bold">{t.whyTitle}</h2>
         <ul className="mb-3 list-disc pl-5 text-sm">
@@ -114,6 +144,16 @@ function ResultView({ current }: { current: CurrentPick }) {
           <ProgressBar value={rec.scores.time} label={t.timeBar} />
           <span>{bnDigits(rec.scores.time)}%</span>
         </div>
+
+        <HealthMeter health={health} className="mt-3" />
+
+        {notice && (
+          <p className="mt-3 rounded-chip bg-peach px-2.5 py-2 text-[13px]">
+            <span className="font-bold">{bn.health.noticeTitle}: </span>
+            {notice}
+          </p>
+        )}
+        {social && <p className="mt-3 rounded-chip bg-cream px-2.5 py-2 text-[13px] font-medium">{social}</p>}
 
         {answers.mood && CARE_MOODS.includes(answers.mood) && (
           <p className="mt-3 rounded-chip bg-peach px-2.5 py-2 text-[13px]">{t.care}</p>
@@ -143,6 +183,9 @@ function ResultView({ current }: { current: CurrentPick }) {
         </Button>
         <ButtonLink to="/share" variant="fun">
           {t.send}
+        </ButtonLink>
+        <ButtonLink to="/challenge" className="col-span-2">
+          {t.challengeFriends}
         </ButtonLink>
       </div>
     </section>

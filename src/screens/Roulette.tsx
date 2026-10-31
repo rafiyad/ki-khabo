@@ -53,7 +53,7 @@ function Wheel({ foods }: { foods: Food[] }) {
 }
 
 export function Roulette() {
-  const { answers, spinsLeft, spendSpin, showWheelPick } = useAppState();
+  const { answers, spinsLeft, spendSpin, showPick } = useAppState();
   const navigate = useNavigate();
   const { pieces, fire } = useConfetti();
   // Dishes on the wheel respect the user's allergies and diet, if they've answered.
@@ -121,7 +121,7 @@ export function Roulette() {
         {winner && !spinning && (
           <Button
             onClick={() => {
-              showWheelPick(winner.id);
+              showPick(winner.id, "wheel");
               navigate("/result");
             }}
           >

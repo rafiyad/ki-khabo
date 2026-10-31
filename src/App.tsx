@@ -9,7 +9,11 @@ import { AppStateProvider } from "@/state/app-state";
 
 // Landing loads with the app; every other screen loads when first opened.
 const Battle = lazy(() => import("@/screens/Battle").then((mod) => ({ default: mod.Battle })));
+const Challenge = lazy(() => import("@/screens/Challenge").then((mod) => ({ default: mod.Challenge })));
+const ChallengePlay = lazy(() => import("@/screens/ChallengePlay").then((mod) => ({ default: mod.ChallengePlay })));
+const Group = lazy(() => import("@/screens/Group").then((mod) => ({ default: mod.Group })));
 const Loading = lazy(() => import("@/screens/Loading").then((mod) => ({ default: mod.Loading })));
+const Quick = lazy(() => import("@/screens/Quick").then((mod) => ({ default: mod.Quick })));
 const NotFound = lazy(() => import("@/screens/NotFound").then((mod) => ({ default: mod.NotFound })));
 const Result = lazy(() => import("@/screens/Result").then((mod) => ({ default: mod.Result })));
 const Roulette = lazy(() => import("@/screens/Roulette").then((mod) => ({ default: mod.Roulette })));
@@ -19,6 +23,7 @@ const StepBudget = lazy(() => import("@/screens/StepBudget").then((mod) => ({ de
 const StepGender = lazy(() => import("@/screens/StepGender").then((mod) => ({ default: mod.StepGender })));
 const StepMeal = lazy(() => import("@/screens/StepMeal").then((mod) => ({ default: mod.StepMeal })));
 const StepMood = lazy(() => import("@/screens/StepMood").then((mod) => ({ default: mod.StepMood })));
+const Wrapped = lazy(() => import("@/screens/Wrapped").then((mod) => ({ default: mod.Wrapped })));
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -44,6 +49,11 @@ function AnimatedRoutes() {
         <Route path="/roulette" element={<Roulette />} />
         <Route path="/battle" element={<Battle />} />
         <Route path="/share" element={<ShareCard />} />
+        <Route path="/quick" element={<Quick />} />
+        <Route path="/group" element={<Group />} />
+        <Route path="/challenge" element={<Challenge />} />
+        <Route path="/c" element={<ChallengePlay />} />
+        <Route path="/wrapped" element={<Wrapped />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       </Suspense>
