@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+/* Design tokens from docs/ajke_ki_khabo_design_system.html.
+   Tailwind v4 reads these instead of a tailwind.config.js. */
+@theme {
+  --font-sans: "Hind Siliguri", "Noto Sans Bengali", ui-sans-serif, system-ui, sans-serif;
+
+  --color-cream: #fff8ec; /* background */
+  --color-ink: #2b1b0e; /* text and outlines */
+  --color-muted: #7a5a3e; /* captions, sub-labels */
+  --color-masala: #ff7a1a; /* primary */
+  --color-haldi: #ffc93c; /* fun / secondary */
+  --color-morich: #e8443a; /* urgent (fills only, never behind small text) */
+  --color-dhonepata: #2fa36b; /* yes / accept */
+  --color-peach: #ffe7c7; /* selected */
+  /* Darker shades so text meets WCAG AA (see docs/brief.md#accessibility). */
+  --color-morich-dark: #c0312a; /* emergency button with white text, error text */
+  --color-dhonepata-dark: #1f7a4d; /* green text on cream */
+
+  /* Radius scale: chips 10 · buttons 14 · option cards 16 · result 20 · meme 24 · frame 22 */
+  --radius-chip: 10px;
+  --radius-btn: 14px;
+  --radius-option: 16px;
+  --radius-result: 20px;
+  --radius-frame: 22px;
+  --radius-meme: 24px;
+
+  --animate-wobble: wobble 1.2s ease-in-out infinite;
+  --animate-wobble-fast: wobble 0.6s ease-in-out infinite;
+  --animate-wobble-slow: wobble 2s ease-in-out infinite;
+  --animate-pulse-soft: pulse-soft 1.6s ease-in-out infinite;
+  --animate-fall: fall var(--fall-duration, 2s) ease-in var(--fall-delay, 0s) forwards;
+
+  @keyframes wobble {
+    0%,
+    100% {
+      transform: rotate(0);
+    }
+    25% {
+      transform: rotate(-6deg);
+    }
+    75% {
+      transform: rotate(6deg);
+    }
+  }
+
+  @keyframes pulse-soft {
+    50% {
+      transform: scale(1.04);
+    }
+  }
+
+  @keyframes fall {
+    to {
+      transform: translateY(105vh) rotate(600deg);
+      opacity: 0;
+    }
+  }
+}
+
+/* Every surface has a 2px ink outline: that outline, not shadows, gives the sticker feel. */
+@utility ink-outline {
+  border: 2px solid var(--color-ink);
+}
+
+/* Chunky button: 5px bottom border that sinks 3px when pressed. */
+@utility chunky {
+  border: 2px solid var(--color-ink);
+  border-bottom-width: 5px;
+  transition:
+    transform 100ms ease,
+    border-bottom-width 100ms ease,
+    filter 150ms ease;
+  &:hover:not(:disabled) {
+    filter: brightness(1.04);
+    transform: translateY(-1px);
+  }
+  &:active:not(:disabled) {
+    transform: translateY(3px);
+    border-bottom-width: 2px;
+  }
+}
+
+html {
+  background: var(--color-peach);
+  color: var(--color-ink);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  min-height: 100dvh;
+  line-height: 1.5; /* extra room for Bengali conjuncts */
+  font-family: var(--font-sans);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 3px;
+}
