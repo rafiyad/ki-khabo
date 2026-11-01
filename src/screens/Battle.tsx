@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Button } from "@/components/Button";
 import { Heading } from "@/components/Heading";
+import { HealthWarning } from "@/components/HealthNote";
 import { OptionCard } from "@/components/OptionCard";
 import { ProgressBar } from "@/components/ProgressBar";
 import { bn } from "@/content/bn";
-import { catalog, getFood } from "@/data";
+import { catalog, getFood, getHealth } from "@/data";
 import { bnDigits } from "@/lib/bn-number";
 
 const short = (name: string) => name.split(" ")[0];
@@ -63,6 +64,7 @@ export function Battle() {
             <ProgressBar value={battle.pollA} label={`${a.name} ${bnDigits(battle.pollA)}%`} track="haldi" className="my-1.5" />
             <p className="text-xs font-semibold text-muted">{t.pollNote}</p>
             <p className="mt-2 font-semibold">{mine === crowd ? t.agree(mine.name) : t.disagree(crowd.name)}</p>
+            <HealthWarning health={getHealth(mine.id)} className="mt-2.5" />
           </div>
         )}
       </div>

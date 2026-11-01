@@ -5,13 +5,26 @@ import { Heading } from "@/components/Heading";
 import { Mascot } from "@/components/Mascot";
 import { Sticker } from "@/components/Sticker";
 import { bn } from "@/content/bn";
+import { catalog, getFood } from "@/data";
+import { horoscopeFor } from "@/lib/horoscope";
+import { isSafeFor } from "@/lib/recommend";
+import { seasonFor } from "@/lib/season";
 import { useAppState } from "@/state/store";
 
 export function Landing() {
-  const { suggest, clearHistory } = useAppState();
+  const { suggest, clearHistory, prefs, answers, showPick } = useAppState();
   const navigate = useNavigate();
   const [cleared, setCleared] = useState(false);
+  const [today] = useState(() => new Date());
   const t = bn.landing;
+
+  // Featured dishes must still respect the user's diet and allergies:
+  // this visit's answers if given, else the ones saved from last time.
+  const rules = answers.budget || !prefs ? answers : prefs;
+  const season = seasonFor(today);
+  const seasonFood = season
+    ? catalog.seasons[season].map((id) => getFood(id)).find((f) => f !== undefined && isSafeFor(f, rules))
+    : undefined;
 
   return (
     <section>
@@ -31,6 +44,11 @@ export function Landing() {
             <ButtonLink to="/roulette" variant="fun">
               {t.lucky}
             </ButtonLink>
+            {prefs && (
+              <ButtonLink to="/quick" variant="accept">
+                {t.quick}
+              </ButtonLink>
+            )}
           </div>
           <p className="mt-3 text-[13px] font-semibold text-morich-dark">{t.warning}</p>
         </div>
@@ -41,6 +59,26 @@ export function Landing() {
           <Mascot expression="confused" className="mx-auto mt-8 w-44" />
         </div>
       </div>
+
+      {season && seasonFood && (
+        <div className="ink-outline mt-5 flex flex-wrap items-center gap-2.5 rounded-option bg-peach px-3.5 py-3">
+          <p className="flex-[1_1_220px] text-[15px] font-semibold">{bn.season[season].banner}</p>
+          <Button
+            variant="fun"
+            onClick={() => {
+              showPick(seasonFood.id, "season");
+              navigate("/result");
+            }}
+          >
+            {bn.season[season].button}
+          </Button>
+        </div>
+      )}
+
+      <HoroscopeCard date={today} safe={(id) => isSafeFor(getFood(id)!, rules)} onDetails={(id) => {
+        showPick(id, "horoscope");
+        navigate("/result");
+      }} />
 
       <nav aria-label="আরো মজা" className="mt-5 grid grid-cols-[repeat(auto-fit,minmax(150px,1fr))] gap-2.5">
         {t.extras.map((e) => (
@@ -86,6 +124,38 @@ export function Landing() {
           {cleared ? t.cleared : ""}
         </p>
       </div>
+    </section>
+  );
+}
+
+function HoroscopeCard({ date, safe, onDetails }: { date: Date; safe: (id: string) => boolean; onDetails: (id: string) => void }) {
+  const [h] = useState(() => horoscopeFor(date, catalog.foods));
+  const t = bn.horoscope;
+  const ok = safe(h.food.id);
+  return (
+    <section aria-labelledby="horoscope-title" className="ink-outline mt-5 rounded-option bg-white px-3.5 py-3">
+      <h2 id="horoscope-title" className="font-bold">
+        {t.title}
+      </h2>
+      <div className="mt-1.5 flex items-center gap-3">
+        <span aria-hidden className="text-[40px] leading-none">
+          {h.food.emoji}
+        </span>
+        <div className="text-sm">
+          <p className="font-semibold">{h.line}</p>
+          <p className="text-muted">
+            {h.luckyTime} · {h.buddy}
+          </p>
+        </div>
+      </div>
+      {!ok && <p className="mt-1.5 text-[13px] font-semibold">{t.notForYou}</p>}
+      <div className="mt-2.5 flex flex-wrap gap-2">
+        {ok && <Button onClick={() => onDetails(h.food.id)}>{t.details}</Button>}
+        <ButtonLink to={`/share?food=${h.food.id}&mode=horoscope`} variant="fun">
+          {t.share}
+        </ButtonLink>
+      </div>
+      <p className="mt-1.5 text-xs text-muted">{t.note}</p>
     </section>
   );
 }

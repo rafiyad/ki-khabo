@@ -1,7 +1,7 @@
 # 0005: No backend for the MVP (no Spring Boot)
 
 **Date:** 2026-10-31
-**Status:** Accepted
+**Status:** Accepted. Live visit counters were added later with one function: see [0006](0006-live-counters.md).
 
 ## Context
 

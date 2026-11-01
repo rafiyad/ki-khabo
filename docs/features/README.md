@@ -13,5 +13,14 @@ One file per feature. Copy [_template.md](_template.md) to add a new one, and li
 | [Share card](share-card.md) | 1:1 meme card: PNG, share sheet, WhatsApp, Facebook | Done | [2](../sprints/sprint-02.md) |
 | [On-device memory](on-device-memory.md) | Recent and accepted dishes on the device, clearable | Done | [2](../sprints/sprint-02.md) |
 | [Installable app](installable-app.md) | PWA: home-screen icon, full screen, offline | Done | [2](../sprints/sprint-02.md) |
+| [Health warnings](health-warnings.md) | Funny warning per dish, পেট-শান্তি মিটার, late-night and streak nudges | Done | [3](../sprints/sprint-03.md) |
+| [Social nudges](social-nudges.md) | Call home, tea for someone, leftovers, local hero | Done | [3](../sprints/sprint-03.md) |
+| [Friend challenge](friend-challenge.md) | "Guess what I'll eat" link, one guess, no server | Done | [3](../sprints/sprint-03.md) |
+| [Group mode](group-mode.md) | Pass the phone, vetoes, verdict, one appeal | Done | [3](../sprints/sprint-03.md) |
+| [Quick mode](quick-mode.md) | Saved preferences, one tap on a mood | Done | [3](../sprints/sprint-03.md) |
+| [Daily horoscope](daily-horoscope.md) | Same dish for everyone each day | Done | [3](../sprints/sprint-03.md) |
+| [Weekly report](weekly-wrapped.md) | 7-day summary card from on-device history | Done | [3](../sprints/sprint-03.md) |
+| [Seasonal modes](seasonal-modes.md) | Ramadan, winter and monsoon banners | Done | [3](../sprints/sprint-03.md) |
+| [Live counters](live-stats.md) | Today's visits and people who chose food, top right | Done (needs Upstash) | [3](../sprints/sprint-03.md) |
 
 Status values: `Idea` → `Planned` → `In progress` → `Done`

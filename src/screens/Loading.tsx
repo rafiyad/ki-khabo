@@ -4,7 +4,7 @@ import { Heading } from "@/components/Heading";
 import { ProgressBar } from "@/components/ProgressBar";
 import { bn } from "@/content/bn";
 import { useAppState } from "@/state/store";
-import { isComplete } from "@/screens/steps";
+import { isReady } from "@/screens/steps";
 
 const STEP_MS = 650;
 
@@ -12,7 +12,7 @@ export function Loading() {
   const { answers, suggest } = useAppState();
   const navigate = useNavigate();
   const [index, setIndex] = useState(0);
-  const complete = isComplete(answers);
+  const complete = isReady(answers);
   const messages = bn.loading;
 
   const finish = useEffectEvent(() => {

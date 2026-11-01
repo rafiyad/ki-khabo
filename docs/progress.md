@@ -4,7 +4,7 @@ _Last updated: 2026-10-31_
 
 ## Summary
 
-The **কি খাবো?** MVP is built and verified locally: a Vite + React installable web app with the full quiz, recommendation engine, result with roast, daily limits, food wheel, food battle and share card. It is **not committed or deployed yet**.
+The **কি খাবো?** MVP is built and verified locally: a Vite + React installable web app with the full quiz, recommendation engine, result with roast, daily limits, food wheel, food battle and share card. It is **committed and pushed** to GitHub (`rafiyad/ki-khabo`, branch `main`) but **not deployed to Vercel yet**.
 
 ## Done
 
@@ -17,15 +17,23 @@ The **কি খাবো?** MVP is built and verified locally: a Vite + React i
 - [x] Browser test (headless, phone size): quiz, limits, final + safety exception, midnight reset, wheel, battle, share PNG, keyboard, reduced motion, blocked storage
 - [x] Lighthouse (mobile): accessibility 100 · best practices 100 · SEO 100 · performance 84–92
 - [x] axe-core: no violations on any screen; every tap target ≥ 48px
+- [x] Layout checked at 320, 390, 768, 1366 and 1920px wide: no sideways scrolling at any size
+- [x] Committed and pushed to `origin/main`
+- [x] Sprint 3 (branch `feature/funny-health-social`, commit `37d28f4`; live counters not committed yet): health warnings, social nudges, friend challenge, group mode, quick mode, daily horoscope, weekly report, seasonal modes, live counters (Vercel Function + Redis). 84 unit tests; 48/48 + 13/13 browser checks
 
 ## In progress
 
-- [ ] Commit and push to GitHub
 - [ ] First deploy to Vercel
 - [ ] Check on real phones
+- [ ] Desktop layout improvements (see known issues)
+- [ ] Re-run axe-core and Lighthouse on the new screens
+- [ ] Connect the Redis database to the project in Vercel for the live counters
 
 ## Known issues
 
+- **Desktop isn't optimized yet.** Phones and tablets are fine, but on laptops and desktops the app stays a 640px-wide centered column:
+  - most of a 1920px screen is empty background
+  - on a 1366×768 laptop, the result screen's action buttons are below the fold
 - `npm audit` reports 10 moderate/low issues in **build-time** dependencies of `vite-plugin-pwa` (`workbox-build` → `ejs`/`jake`). Nothing ships to users. Re-check when the plugin updates.
 - Performance on Lighthouse's simulated slow 4G is 84 on the landing page (LCP 4.0s), mostly fonts and the React/Router/Motion bundle.
 - The male mood list isn't defined yet; men see all moods.
@@ -33,4 +41,4 @@ The **কি খাবো?** MVP is built and verified locally: a Vite + React i
 
 ## Current sprint
 
-[Sprint 2](sprints/sprint-02.md)
+[Sprint 2](sprints/sprint-02.md) (deploy left) · [Sprint 3](sprints/sprint-03.md) (done; connect Redis in Vercel left)

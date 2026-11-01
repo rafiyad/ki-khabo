@@ -1,18 +1,25 @@
 import { createContext, use, useEffect, useState } from "react";
-import { catalog, getFood } from "@/data";
+import { catalog, getFood, getHealth } from "@/data";
+import type { MoodId } from "@/data/options";
+import { mealForHour } from "@/lib/meal-time";
+import { isLateNight, type AcceptedEntry } from "@/lib/nudges";
 import { emergencyPick, EMPTY_ANSWERS, isSafeFor, recommend, type Answers, type Recommendation } from "@/lib/recommend";
 import { consume, parseQuota, remaining, rollover, type Quota } from "@/lib/quota";
 import { local, readJSON, session as sessionStore, writeJSON } from "@/lib/storage";
+import { trackChosen } from "@/state/live-stats";
 
 // Session state (this visit only, sessionStorage): answers and the current pick.
-// Device state (localStorage): daily limits and history. Gender and age never leave the session.
+// Device state (localStorage): daily limits, history and saved preferences (budget, diet,
+// categories, restrictions) for quick mode. Gender, age and mood never leave the session.
 
 const SESSION_KEY = "ki-khabo:session:v1";
 const DEVICE_KEY = "ki-khabo:device:v1";
 const RECENT_LIMIT = 10;
 const RECENT_AVOID = 5;
 
-export type PickSource = "quiz" | "more" | "reject" | "emergency" | "wheel";
+export type PickSource = "quiz" | "more" | "reject" | "emergency" | "wheel" | "season" | "horoscope";
+/** Picks shown without using a suggestion chance. */
+export type FreePickSource = "wheel" | "season" | "horoscope";
 
 export type CurrentPick = {
   foodId: string;
@@ -30,11 +37,25 @@ type Session = {
   current: CurrentPick | null;
 };
 
+export type Prefs = Pick<Answers, "budget" | "diet" | "categories" | "avoid">;
+
 type Device = {
   quota: Quota;
   recent: string[];
-  accepted: { foodId: string; at: number }[];
+  accepted: AcceptedEntry[];
+  prefs: Prefs | null;
 };
+
+function parsePrefs(value: unknown): Prefs | null {
+  const p = value as Partial<Prefs> | null;
+  if (!p || typeof p.budget !== "string" || typeof p.diet !== "string") return null;
+  return {
+    budget: p.budget,
+    diet: p.diet,
+    categories: Array.isArray(p.categories) ? p.categories : [],
+    avoid: Array.isArray(p.avoid) ? p.avoid : [],
+  };
+}
 
 const EMPTY_SESSION: Session = { answers: EMPTY_ANSWERS, shown: [], rejected: [], current: null };
 
@@ -54,7 +75,10 @@ function loadDevice(): Device {
   return {
     quota: parseQuota(d?.quota, new Date()),
     recent: Array.isArray(d?.recent) ? d.recent.filter((id) => typeof id === "string") : [],
-    accepted: Array.isArray(d?.accepted) ? d.accepted : [],
+    accepted: Array.isArray(d?.accepted)
+      ? d.accepted.filter((a) => typeof a?.foodId === "string" && typeof a?.at === "number")
+      : [],
+    prefs: parsePrefs(d?.prefs),
   };
 }
 
@@ -115,6 +139,8 @@ export function useAppStateValue() {
       rng: Math.random,
       exclude: [...shown, ...device.recent.slice(0, RECENT_AVOID)],
       rejected,
+      // Late at night, lighter dishes first while any fit (src/lib/nudges.ts).
+      prefer: isLateNight(new Date()) ? (f: { id: string }) => getHealth(f.id).heavy < 3 : undefined,
     };
     const rec: Recommendation | null =
       source === "emergency" ? emergencyPick(catalog.foods, answers, options) : recommend(catalog.foods, answers, options);
@@ -125,7 +151,15 @@ export function useAppStateValue() {
 
     const used = consume(quota, "suggestions");
     const final = remaining(used, "suggestions") === 0;
-    setDevice((d) => ({ ...d, quota: { ...used, finalFoodId: final ? rec.food.id : used.finalFoodId } }));
+    const prefs: Prefs | undefined =
+      source === "quiz" && answers.budget
+        ? { budget: answers.budget, diet: answers.diet, categories: answers.categories, avoid: answers.avoid }
+        : undefined;
+    setDevice((d) => ({
+      ...d,
+      quota: { ...used, finalFoodId: final ? rec.food.id : used.finalFoodId },
+      prefs: prefs ?? d.prefs,
+    }));
     setSession((s) => ({
       ...s,
       shown: [...shown, rec.food.id],
@@ -144,8 +178,16 @@ export function useAppStateValue() {
       : suggest("more", { shown: [...sessionState.shown, current.foodId] });
   }
 
-  function showWheelPick(foodId: string) {
-    setSession((s) => ({ ...s, current: { foodId, source: "wheel", seed: newSeed(), final: false } }));
+  /** Shows a dish chosen elsewhere (wheel, season, horoscope) without using a suggestion. */
+  function showPick(foodId: string, source: FreePickSource) {
+    setSession((s) => ({ ...s, current: { foodId, source, seed: newSeed(), final: false } }));
+  }
+
+  /** Quick mode: saved preferences + today's mood, meal from the clock. Gender and age aren't needed. */
+  function quickStart(mood: MoodId): boolean {
+    if (!device.prefs) return false;
+    setAnswers({ ...device.prefs, mood, meal: mealForHour(new Date().getHours()) });
+    return true;
   }
 
   /** Uses one wheel spin. Returns false when today's spins are used up. */
@@ -160,11 +202,12 @@ export function useAppStateValue() {
     const current = sessionState.current;
     if (!current) return;
     setDevice((d) => ({ ...d, accepted: [{ foodId: current.foodId, at: Date.now() }, ...d.accepted].slice(0, 30) }));
+    trackChosen();
   }
 
   /** Clears history and answers. Daily chances stay, so this isn't a way around the limit. */
   function clearHistory() {
-    setDevice((d) => ({ ...d, recent: [], accepted: [] }));
+    setDevice((d) => ({ ...d, recent: [], accepted: [], prefs: null }));
     setSession(EMPTY_SESSION);
   }
 
@@ -172,12 +215,15 @@ export function useAppStateValue() {
     answers,
     current: sessionState.current,
     lastAccepted: device.accepted[0]?.foodId ?? null,
+    accepted: device.accepted,
+    prefs: device.prefs,
     suggestionsLeft: remaining(device.quota, "suggestions"),
     spinsLeft: remaining(device.quota, "spins"),
     setAnswers,
     suggest,
     next,
-    showWheelPick,
+    showPick,
+    quickStart,
     spendSpin,
     accept,
     clearHistory,

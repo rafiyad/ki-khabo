@@ -1,15 +1,21 @@
 import { LazyMotion, MotionConfig, domAnimation, m } from "motion/react";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Link, Route, Routes, useLocation } from "react-router";
 import { buttonClass } from "@/components/button-class";
 import { Chip } from "@/components/Chip";
+import { LiveStatsBadge } from "@/components/LiveStatsBadge";
 import { bn } from "@/content/bn";
 import { Landing } from "@/screens/Landing";
 import { AppStateProvider } from "@/state/app-state";
+import { startLiveStats } from "@/state/live-stats";
 
 // Landing loads with the app; every other screen loads when first opened.
 const Battle = lazy(() => import("@/screens/Battle").then((mod) => ({ default: mod.Battle })));
+const Challenge = lazy(() => import("@/screens/Challenge").then((mod) => ({ default: mod.Challenge })));
+const ChallengePlay = lazy(() => import("@/screens/ChallengePlay").then((mod) => ({ default: mod.ChallengePlay })));
+const Group = lazy(() => import("@/screens/Group").then((mod) => ({ default: mod.Group })));
 const Loading = lazy(() => import("@/screens/Loading").then((mod) => ({ default: mod.Loading })));
+const Quick = lazy(() => import("@/screens/Quick").then((mod) => ({ default: mod.Quick })));
 const NotFound = lazy(() => import("@/screens/NotFound").then((mod) => ({ default: mod.NotFound })));
 const Result = lazy(() => import("@/screens/Result").then((mod) => ({ default: mod.Result })));
 const Roulette = lazy(() => import("@/screens/Roulette").then((mod) => ({ default: mod.Roulette })));
@@ -19,6 +25,7 @@ const StepBudget = lazy(() => import("@/screens/StepBudget").then((mod) => ({ de
 const StepGender = lazy(() => import("@/screens/StepGender").then((mod) => ({ default: mod.StepGender })));
 const StepMeal = lazy(() => import("@/screens/StepMeal").then((mod) => ({ default: mod.StepMeal })));
 const StepMood = lazy(() => import("@/screens/StepMood").then((mod) => ({ default: mod.StepMood })));
+const Wrapped = lazy(() => import("@/screens/Wrapped").then((mod) => ({ default: mod.Wrapped })));
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -44,6 +51,11 @@ function AnimatedRoutes() {
         <Route path="/roulette" element={<Roulette />} />
         <Route path="/battle" element={<Battle />} />
         <Route path="/share" element={<ShareCard />} />
+        <Route path="/quick" element={<Quick />} />
+        <Route path="/group" element={<Group />} />
+        <Route path="/challenge" element={<Challenge />} />
+        <Route path="/c" element={<ChallengePlay />} />
+        <Route path="/wrapped" element={<Wrapped />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       </Suspense>
@@ -52,6 +64,7 @@ function AnimatedRoutes() {
 }
 
 export function App() {
+  useEffect(() => startLiveStats(), []);
   return (
     <BrowserRouter>
       <AppStateProvider>
@@ -64,7 +77,10 @@ export function App() {
                 <Link to="/" className={buttonClass("neutral", "border-b-[3px] px-3 text-[17px]")}>
                   {bn.brandWithEmoji}
                 </Link>
-                <Chip tone="dhonepata">{bn.noSignup}</Chip>
+                <div className="ml-auto flex flex-col items-end gap-1.5">
+                  <LiveStatsBadge />
+                  <Chip tone="dhonepata">{bn.noSignup}</Chip>
+                </div>
               </header>
               <main>
                 <AnimatedRoutes />

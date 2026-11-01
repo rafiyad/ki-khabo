@@ -10,10 +10,11 @@ The app remembers a little on the device, with no account:
 - **Recent dishes** (last 10): the engine avoids the last 5 across visits.
 - **Accepted dishes** (last 30): the share card can use the latest.
 - **Daily limits:** see [daily-limits.md](daily-limits.md).
+- **Saved preferences** (budget, diet, favourite categories, restrictions) for [quick mode](quick-mode.md), saved after a full quiz.
 
-Quiz answers (gender, age, mood, budget, restrictions) are kept for the **current visit only** (`sessionStorage`).
+Gender, age and mood are kept for the **current visit only** (`sessionStorage`).
 
-**"🧹 আমার ইতিহাস মুছুন"** on the landing page clears recent and accepted dishes and the current answers. Daily limits stay.
+**"🧹 আমার ইতিহাস মুছুন"** on the landing page clears recent and accepted dishes, saved preferences and the current answers. Daily limits stay.
 
 ## How it works
 
@@ -30,3 +31,4 @@ Quiz answers (gender, age, mood, budget, restrictions) are kept for the **curren
 
 - 2026-10-31: created for the Next.js version
 - 2026-10-31: rebuilt for the Vite app (history + limits; answers per visit)
+- 2026-10-31: saved preferences for quick mode; history also feeds the weekly report and streak nudges
