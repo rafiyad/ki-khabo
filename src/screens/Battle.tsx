@@ -7,8 +7,7 @@ import { ProgressBar } from "@/components/ProgressBar";
 import { bn } from "@/content/bn";
 import { catalog, getFood, getHealth } from "@/data";
 import { bnDigits } from "@/lib/bn-number";
-
-const short = (name: string) => name.split(" ")[0];
+import { shortName } from "@/lib/short-name";
 
 export function Battle() {
   const [index, setIndex] = useState(0);
@@ -24,7 +23,7 @@ export function Battle() {
   return (
     <section>
       <Heading title="ফুড ব্যাটল" className="text-center text-[22px]">
-        {t.title(short(a.name), short(b.name))}
+        {t.title(shortName(a.name), shortName(b.name))}
       </Heading>
       <p className="mt-0.5 mb-3.5 text-center text-muted">{t.subtitle}</p>
 

@@ -32,7 +32,7 @@ One question per screen, with a progress bar:
 1. **Landing:** funny welcome.
 2. **Gender:** পুরুষ (male) or নারী (female).
 3. **Age:** ১৮-এর কম, ১৮–২৫, ২৬–৩৫, ৩৬–৫০, ৫০+.
-4. **Mood:** the list for the selected gender, plus "সব Mood দেখুন" (see all moods).
+4. **Mood:** "🤷 জানি না" (not sure) first for everyone, then the list for the selected gender, plus "সব Mood দেখুন" (see all moods).
 5. **Meal time:** pre-selected from the clock; the user can change it.
 6. **Budget and food restrictions:** veg/non-veg, allergies, favorite categories.
 7. **Loading:** funny messages.
@@ -74,6 +74,7 @@ One question per screen, with a progress bar:
   - **Female:** Happy, Sad, Angry, Confused, Anxiety, Depressed, Overthinking, Irritated, Lonely, Stressed, Insecure, Fearful, Guilty, Disappointed, Frustrated, Overwhelmed, Low Energy, Restless, Calm, Very Energetic, Bored, Jealous, Heartbroken.
   - **Male:** a separate list, to be defined later. Until then, men see the full list.
 - Moods are **not locked to gender**: any user can pick any mood (for example via a "show all moods" option).
+- **"🤷 জানি না"** is always the first option. No dish is matched to it, so the engine picks a surprise among dishes that fit the budget, meal time and preferences. The result explains it ("আজকে ভাগ্যই আপনার শেফ!") and hides the mood-match bar. (Added 2026-11-01.)
 - Anxiety, Depressed and similar words are self-reported moods, **not diagnoses**.
 
 ## Recommendation engine

@@ -72,6 +72,90 @@ export const HEALTH: Record<string, Health> = {
   pitha: { oil: 1, spice: 1, heavy: 1, warning: "সদ্য নামানো পিঠার ভেতরের গুড় আগুন গরম। জিভ বাঁচান!" },
   jilapi: { oil: 3, spice: 1, heavy: 1, warning: "জিলাপির প্যাঁচ মজার, কিন্তু চিনির প্যাঁচে পড়বেন না। দুইটাই যথেষ্ট।" },
   lassi: { oil: 1, spice: 1, heavy: 2, warning: "লাচ্ছির পর ঘুম আসলে দোষ লাচ্ছির না, দুপুরের। চিনি কম বলতে পারেন।" },
+
+  // ---------- Meat specials (নলি, পায়া, মগজ, চাপ, কাবাব) ----------
+  "nalli-nihari": { oil: 3, spice: 2, heavy: 3, warning: "নলির মজ্জা টানতে গিয়ে শব্দ হলে লজ্জা নাই, এটাই নিয়ম। তবে মাসে এক-দুইবারই যথেষ্ট।" },
+  "khashir-nalli": { oil: 3, spice: 3, heavy: 3, warning: "নলি একটাই, হাত অনেকগুলো। টেবিলে ঝগড়া এড়াতে আগেই ভাগ ঠিক করুন।" },
+  "khashir-paya": { oil: 3, spice: 2, heavy: 3, warning: "সকালে পায়া খেলে দুপুর পর্যন্ত আর কিছু লাগবে না। ঝোলে চুমুক দিন, অফিসের শার্টে না।" },
+  "gorur-paya": { oil: 3, spice: 3, heavy: 3, warning: "পায়ার ঝোল যত গাঢ়, ঘুম তত গভীর। সকালে খেলে অ্যালার্ম দুইটা দিন।" },
+  "mogoj-bhuna": { oil: 3, spice: 2, heavy: 2, warning: "মগজ খেলে বুদ্ধি বাড়ে কিনা জানি না, তবে তেল বাড়ে নিশ্চিত। সপ্তাহে একবারই থাক।" },
+  "beef-chaap": { oil: 3, spice: 2, heavy: 3, warning: "কয়লার আগুনে ঝলসানো চাপ মানেই ধোঁয়ার ঘ্রাণ আর ভারী পেট। সাথে শসা-পেঁয়াজ নিন।" },
+  "khashir-chaap": { oil: 3, spice: 2, heavy: 3, warning: "চাপ ভেতর পর্যন্ত সেদ্ধ কিনা দেখুন। দাঁতের ফাঁকের জন্য টুথপিক রেডি রাখুন।" },
+  "suti-kabab": { oil: 3, spice: 3, heavy: 2, warning: "সুতি কাবাব নরম, কিন্তু ঝাল শক্ত। পানি হাতের কাছে রাখুন।" },
+  "boti-kabab": { oil: 3, spice: 3, heavy: 2, warning: "কয়লার ধোঁয়া জামায় থেকে যাবে। এটা যেকোনো পারফিউমের চেয়ে শক্তিশালী।" },
+  "shami-kabab": { oil: 3, spice: 2, heavy: 1, warning: "একটা শামি কাবাব নিরীহ, পাঁচটা হলে পেট মামলা করবে।" },
+  "chicken-tikka": { oil: 2, spice: 2, heavy: 2, warning: "তন্দুরের টিক্কা তুলনামূলক কম তেলে। সাবাশ! তবে সাথে নানের সংখ্যা গুনুন।" },
+  "tandoori-chicken": { oil: 2, spice: 2, heavy: 2, warning: "ভেতরে গোলাপি থাকলে ফেরত দিন। কম রান্না মুরগি পেটের শত্রু।" },
+  "grill-chicken": { oil: 3, spice: 2, heavy: 3, warning: "মেয়োনিজ দুই বাটি নিলে ওটা আর গ্রিল না, মেয়ো-স্যুপ। টাটকা কিনা দেখে নিন।" },
+  "chui-jhal-khashi": { oil: 3, spice: 3, heavy: 3, warning: "চুইয়ের ঝাল জিভে না, মাথায় ওঠে। প্রথম কামড়ের পর চোখে পানি আসা স্বাভাবিক।" },
+  "mezbani-gosht": { oil: 3, spice: 3, heavy: 3, warning: "মেজবানির ঝাল আর তেল দুটোই জাঁকজমক। এক প্লেট খেলে চট্টগ্রাম পর্যন্ত ঘুম।" },
+  "satkora-gosht": { oil: 3, spice: 2, heavy: 3, warning: "সাতকরার টক ঘ্রাণে ভাত বেশি চলে যাবে। প্লেট গুনুন।" },
+  "bot-bhuna": { oil: 3, spice: 3, heavy: 2, warning: "বট ভালো করে পরিষ্কার আর সেদ্ধ হয়েছে কিনা নিশ্চিত হন। নইলে পেট বিদ্রোহ করবে।" },
+  "murgir-kolija": { oil: 2, spice: 2, heavy: 1, warning: "কলিজা টাটকা কিনা দেখে নিন। বেশি ভাজলে রাবার, কম ভাজলে বিপদ।" },
+
+  // ---------- More biryani / polao ----------
+  "khashir-biryani": { oil: 3, spice: 2, heavy: 3, warning: "খাসির বিরিয়ানির পর বিকেলের পরিকল্পনা বাতিল করুন। শরীর ঘুম চাইবেই।" },
+  "ilish-polao": { oil: 2, spice: 2, heavy: 2, warning: "ইলিশের কাঁটা আর পোলাওয়ের ঘি, দুটো সামলাতেই পুরো মনোযোগ লাগবে।" },
+  "polao-roast": { oil: 3, spice: 1, heavy: 3, warning: "বিয়েবাড়ির স্বাদ, কোনো দাওয়াত ছাড়াই। খাওয়ার পর একটু হাঁটুন।" },
+
+  // ---------- More home style ----------
+  "bhuna-khichuri": { oil: 3, spice: 2, heavy: 3, warning: "বৃষ্টির দিনে ভুনা খিচুড়ি নিষেধ না, কিন্তু পরের ঘুমের দায় আমাদের না।" },
+  "khichuri-ilish": { oil: 2, spice: 1, heavy: 2, warning: "বৃষ্টি, খিচুড়ি আর ইলিশ ভাজা: এর চেয়ে বড় সুখ আছে কিনা গবেষণা চলছে। কাঁটা সাবধান।" },
+  "hasher-mangsho": { oil: 3, spice: 3, heavy: 3, warning: "হাঁস আর চালের রুটি শীতের সেরা জুটি। দুই প্লেটের পর কম্বলই আপনার একমাত্র বন্ধু।" },
+  "gorur-bhuna": { oil: 3, spice: 2, heavy: 3, warning: "ঈদের মতো স্বাদ, ঈদের মতো ঘুম। খাওয়ার পর আধা ঘণ্টা হাঁটুন।" },
+  "shutki-bhaat": { oil: 1, spice: 3, heavy: 1, warning: "শুঁটকির ঘ্রাণ পাশের ফ্ল্যাট পর্যন্ত যাবে। প্রতিবেশীদের আগেই জানিয়ে রাখুন।" },
+  "lal-shak-daal": { oil: 1, spice: 1, heavy: 1, warning: "শাক খেলে বাসার সবাই খুশি, পেট খুশি, ডাক্তারও খুশি। একসাথে সবাইকে খুশি করা বিরল।" },
+  "pabda-jhol": { oil: 1, spice: 2, heavy: 1, warning: "পাবদার কাঁটা নরম, তবু সাবধান। তাড়াহুড়া মানেই গলায় কাঁটা।" },
+  "rui-bhuna": { oil: 2, spice: 2, heavy: 1, warning: "রুইয়ের মাথা কে পাবে, এই নিয়ে পারিবারিক বৈঠক লাগতে পারে।" },
+  "loitta-fry": { oil: 3, spice: 2, heavy: 1, warning: "লইট্টা ফ্রাই মচমচে, কিন্তু তেলটা কয় বেলার পুরনো, জিজ্ঞেস করতে ভুলবেন না।" },
+  "kachki-chorchori": { oil: 2, spice: 2, heavy: 1, warning: "ছোট মাছ, বড় উপকার। শুধু চচ্চড়ির ঝালে সাবধান।" },
+  "dim-bhuna": { oil: 2, spice: 2, heavy: 1, warning: "মেসের জাতীয় খাবার। ডিম দুইটার বেশি হলে কোলেস্টেরল মনে মনে হাসবে।" },
+  "kalai-ruti": { oil: 1, spice: 3, heavy: 1, warning: "কালাই রুটি পুরু আর মজার, সাথে ঝাল ভর্তা। মরিচ কম দিতে বলুন।" },
+
+  // ---------- More street food ----------
+  velpuri: { oil: 2, spice: 3, heavy: 1, warning: "ভেলপুরির পাপড়ি মচমচে থাকতে থাকতে খান, আর টক পানিটা পরিষ্কার কিনা দেখুন।" },
+  "doi-fuchka": { oil: 2, spice: 2, heavy: 1, warning: "টক-মিষ্টি-ঝাল এক কামড়ে। শুধু দইটা টাটকা কিনা দেখুন।" },
+  ghugni: { oil: 1, spice: 2, heavy: 1, warning: "সস্তা, পেট ভরা, শান্তি। শুধু ঝালটা মেপে দিতে বলুন।" },
+  "alur-chop": { oil: 3, spice: 2, heavy: 1, warning: "চপের তেল কাগজে মুছে নিন। কাগজটা আপনার চেয়ে বেশি তেল খাবে।" },
+  "shobji-somucha": { oil: 3, spice: 2, heavy: 1, warning: "সমুচার কোণা ধারালো, গরম ভেতরটা আরো ধারালো। ফুঁ দিয়ে খান।" },
+  "dal-puri": { oil: 3, spice: 1, heavy: 1, warning: "ডালপুরি তিনটা পর্যন্ত নাস্তা, পাঁচটা হলে সেটা জীবনদর্শন।" },
+  "moglai-paratha": { oil: 3, spice: 2, heavy: 2, warning: "মোগলাইয়ের তেল আর ডিম দুটোই দরাজদিল। সাথে সালাদ খেলে দোকানদারও অবাক হবে।" },
+  "chicken-roll": { oil: 2, spice: 2, heavy: 2, warning: "রোল হাতে নিয়ে হাঁটতে হাঁটতে খাবেন না। সস জামায় পড়বেই।" },
+  "chitoi-pitha": { oil: 1, spice: 3, heavy: 1, warning: "শুঁটকি ভর্তার ঝাল ভোরের ঘুম ভাঙাতে যথেষ্ট। চোখ খোলা রাখুন।" },
+  bakorkhani: { oil: 2, spice: 1, heavy: 1, warning: "বাকরখানির গুঁড়া বিছানায় পড়লে সারারাত খচখচ করবে। টেবিলে বসে খান।" },
+  "badam-bhaja": { oil: 1, spice: 1, heavy: 1, warning: "বাদামের খোসা যেখানে সেখানে ফেলবেন না। শহরটা আমাদেরই।" },
+  "fol-makha": { oil: 1, spice: 3, heavy: 1, warning: "লবণ-মরিচে মাখানো ফল দারুণ, শুধু কাটার ছুরিটা পরিষ্কার কিনা দেখে নিন।" },
+  "bhutta-pora": { oil: 1, spice: 2, heavy: 1, warning: "ভুট্টার দানা দাঁতে আটকাবেই। ক্যামেরার সামনে হাসার আগে আয়না দেখুন।" },
+
+  // ---------- More fast food ----------
+  momo: { oil: 1, spice: 2, heavy: 1, warning: "স্টিমড মোমো মানে কম তেল! সস বেশি নিলে সেই সুবিধা শেষ।" },
+  pasta: { oil: 3, spice: 1, heavy: 2, warning: "হোয়াইট সস মানেই ক্রিম আর চিজ। এক প্লেটেই থামুন।" },
+  "club-sandwich": { oil: 2, spice: 1, heavy: 2, warning: "তিন তলা স্যান্ডউইচ কামড়াতে গেলে চারপাশে ধ্বংসযজ্ঞ। টিস্যু রাখুন।" },
+  "chicken-wings": { oil: 3, spice: 3, heavy: 2, warning: "নাগার ঝাল সাহসীদের জন্য। পাশে দই বা দুধ রাখুন, পানিতে কাজ হবে না।" },
+  "french-fries": { oil: 3, spice: 1, heavy: 1, warning: "ফ্রাইয়ে আলাদা লবণ দেবেন না, দোকান আগেই দিয়ে রেখেছে।" },
+  "packet-noodles": { oil: 2, spice: 2, heavy: 1, warning: "দুই মিনিটের নুডলস, কিন্তু মসলার প্যাকেটে সারাদিনের লবণ। অর্ধেক মসলাতেও চলে।" },
+  "chicken-patties": { oil: 3, spice: 1, heavy: 1, warning: "পেটিসের পরত ঝরে পড়বে। কোলে একটা কাগজ রাখুন।" },
+
+  // ---------- More sweets and pitha ----------
+  chomchom: { oil: 1, spice: 1, heavy: 1, warning: "টাঙ্গাইলের চমচম এক টুকরাই রাজকীয়। দুইটার পর চিনিও ক্লান্ত হবে।" },
+  kalojam: { oil: 2, spice: 1, heavy: 1, warning: "কালোজাম রসে ডুবানো থাকে, আপনি ডুববেন না।" },
+  shondesh: { oil: 1, spice: 1, heavy: 1, warning: "সন্দেশ ছোট, কিন্তু মিষ্টি বড়। দুইটাই যথেষ্ট।" },
+  payesh: { oil: 1, spice: 1, heavy: 2, warning: "বাসার পায়েসের সাথে কোনো তুলনা চলে না। এক বাটিতেই মন ভরে।" },
+  firni: { oil: 1, spice: 1, heavy: 1, warning: "ঠান্ডা ফিরনি মাটির বাটিতে। বাটিটা ফেরত দিতে ভুলবেন না।" },
+  zarda: { oil: 2, spice: 1, heavy: 2, warning: "জর্দার রঙ দেখে মন খুশি, চিনির পরিমাণ জানলে পেট চিন্তিত।" },
+  patishapta: { oil: 1, spice: 1, heavy: 1, warning: "ভেতরের ক্ষীর গরম থাকে। সাবধানে কামড় দিন।" },
+  kulfi: { oil: 1, spice: 1, heavy: 1, warning: "কুলফি গলার আগে খান, আর বরফটা কোন পানির, একবার ভাবুন।" },
+  "hawai-mithai": { oil: 1, spice: 1, heavy: 1, warning: "এটা আসলে মেঘ আর চিনি। মেঘ উড়ে যায়, চিনিটাই থেকে যায়।" },
+
+  // ---------- Drinks ----------
+  borhani: { oil: 1, spice: 2, heavy: 1, warning: "বিরিয়ানির পর বোরহানি হজমের বন্ধু। তবে এতে বিরিয়ানির পরিমাণ কমে না।" },
+  matha: { oil: 1, spice: 1, heavy: 1, warning: "দুপুরে এক গ্লাস মাঠা মানেই ভাতঘুমের আমন্ত্রণ।" },
+  "malai-cha": { oil: 1, spice: 1, heavy: 1, warning: "মালাই চায়ের সর ঠোঁটে লাগবে, চিনি লাগবে মনে। এক কাপেই থামুন।" },
+  "cold-coffee": { oil: 1, spice: 1, heavy: 1, warning: "সন্ধ্যার পর কোল্ড কফি খেলে রাতের ঘুম আপনাকে আনফলো করবে।" },
+  "akher-rosh": { oil: 1, spice: 1, heavy: 1, warning: "মেশিন আর গ্লাস পরিষ্কার কিনা দেখুন। বরফ ছাড়া নিতে পারলে আরো ভালো।" },
+  "daber-pani": { oil: 1, spice: 1, heavy: 1, warning: "এতে কোনো সতর্কতা নাই। এটা প্রকৃতির নিজের এনার্জি ড্রিংক। 🥥" },
+  "lebu-shorbot": { oil: 1, spice: 1, heavy: 1, warning: "শরবতের পানি ফোটানো কিনা জিজ্ঞেস করুন। গরমে পেটের সাথে ঝামেলা চলে না।" },
+  "fruit-juice": { oil: 1, spice: 1, heavy: 1, warning: "দোকানের জুসে পানি আর বরফ কোথা থেকে? একবার জিজ্ঞেস করলে ক্ষতি নাই।" },
 };
 
 /** Fallback for a dish without a note yet. The data test makes sure this isn't needed. */

@@ -45,8 +45,8 @@ export function healthNudge(ctx: HealthContext): string | null {
     (a) => a.at >= since && a.foodId !== food.id && ctx.getFood(a.foodId)?.category === food.category,
   ).length;
   const count = sameCategory + 1;
-  // Daily rice and curry is just life, not a streak worth a warning.
-  if (count < STREAK_MIN || food.category === "home") return null;
+  // Daily rice and curry (or a drink) is just life, not a streak worth a warning.
+  if (count < STREAK_MIN || food.category === "home" || food.category === "drinks") return null;
 
   const light = ctx.foods.filter((f) => {
     const h = ctx.getHealth(f.id);
@@ -57,7 +57,7 @@ export function healthNudge(ctx: HealthContext): string | null {
 }
 
 const HOME_MOODS: MoodId[] = ["lonely", "sad", "heartbroken", "lowenergy"];
-const TEA_DISHES = ["cha-singara", "cha-biscuit"];
+const TEA_DISHES = ["cha-singara", "cha-biscuit", "malai-cha"];
 /** Chance that a social line is shown at all, so it stays a surprise rather than a lecture. */
 export const SOCIAL_CHANCE = 0.5;
 

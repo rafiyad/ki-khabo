@@ -1,5 +1,5 @@
 import { bn } from "@/content/bn";
-import { MEAL_NAMES, MOODS, type BudgetId } from "@/data/options";
+import { MEAL_NAMES, MOODS, UNSURE_MOOD, type BudgetId } from "@/data/options";
 import { bnDigits } from "@/lib/bn-number";
 import type { Answers, Recommendation } from "@/lib/recommend";
 import { pickOne, type Rng } from "@/lib/rng";
@@ -20,13 +20,18 @@ export function resultCopy(rec: Recommendation, answers: Answers, rng: Rng): Res
   const mood = MOODS.find((m) => m.id === answers.mood);
   const meal = answers.meal ? MEAL_NAMES[answers.meal] : MEAL_NAMES.any;
   const budget: BudgetId = answers.budget ?? "b200";
+  const unsure = answers.mood === UNSURE_MOOD;
 
   return {
     badge: pickOne(bn.result.badges, rng),
     headline: pickOne(bn.result.headlines, rng)(food.name),
-    explanation: mood ? bn.result.explain(mood.label, bn.result.budgetLines[budget]) : bn.result.explainNoMood,
+    explanation: unsure
+      ? bn.result.explainUnsure
+      : mood
+        ? bn.result.explain(mood.label, bn.result.budgetLines[budget])
+        : bn.result.explainNoMood,
     reasons: [
-      rec.moodMatch && mood ? bn.result.whyMood(mood.label, food.name) : bn.result.whyNoMood,
+      unsure ? bn.result.whyUnsure : rec.moodMatch && mood ? bn.result.whyMood(mood.label, food.name) : bn.result.whyNoMood,
       bn.result.whyPrice(bnDigits(food.price), rec.withinBudget),
       rec.mealMatch ? bn.result.whyMeal(meal) : bn.result.whyNoMeal,
     ],

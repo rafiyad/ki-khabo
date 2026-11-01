@@ -10,7 +10,7 @@
    - bigger landing headline and mascot; more cards per row
    - optional food-sticker pattern on the empty background
 4. Define the male mood list (brief)
-5. Have someone check dish prices and ingredients, especially `contains` for allergies
+5. Have someone check dish prices and ingredients, especially `contains` for allergies (now 117 dishes; the 70 new ones are typical Dhaka values, unchecked)
 
 ## Roadmap
 

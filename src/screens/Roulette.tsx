@@ -12,6 +12,7 @@ import type { Food } from "@/data/foods";
 import { bnDigits } from "@/lib/bn-number";
 import { isSafeFor } from "@/lib/recommend";
 import { sample } from "@/lib/rng";
+import { shortName } from "@/lib/short-name";
 import { useAppState } from "@/state/store";
 
 const SEGMENTS = 8;
@@ -38,7 +39,7 @@ function Wheel({ foods }: { foods: Food[] }) {
             <path d={`M0 0 L${x1} ${y1} A${R} ${R} 0 0 1 ${x2} ${y2} Z`} fill={FILLS[i % FILLS.length]} stroke="#2B1B0E" strokeWidth="2" />
             <g transform={`rotate(${mid - 90})`}>
               <text x="112" y="5" textAnchor="end" fontSize="13" fontWeight="700" fill="#2B1B0E" fontFamily="inherit">
-                {f.name.split(" ")[0]}
+                {shortName(f.name)}
               </text>
               <text x="48" y="7" textAnchor="middle" fontSize="20">
                 {f.emoji}

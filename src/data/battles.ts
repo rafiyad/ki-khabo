@@ -12,4 +12,11 @@ export const BATTLES: Battle[] = [
   { a: "cha-singara", b: "jhalmuri", pollA: 61 },
   { a: "morog-polao", b: "chicken-biryani", pollA: 39 },
   { a: "ice-cream", b: "falooda", pollA: 55 },
+  { a: "mogoj-bhuna", b: "nalli-nihari", pollA: 36 },
+  { a: "velpuri", b: "fuchka", pollA: 31 },
+  { a: "chomchom", b: "roshogolla", pollA: 49 },
+  { a: "borhani", b: "lassi", pollA: 57 },
+  { a: "beef-chaap", b: "naan-chaap", pollA: 53 },
+  { a: "daber-pani", b: "akher-rosh", pollA: 62 },
+  { a: "momo", b: "chicken-shawarma", pollA: 45 },
 ];

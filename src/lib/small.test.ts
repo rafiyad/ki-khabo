@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { bnDigits, bnTime } from "@/lib/bn-number";
 import { mealForHour } from "@/lib/meal-time";
+import { shortName } from "@/lib/short-name";
 
 describe("bnDigits", () => {
   it("converts digits and leaves other text alone", () => {
@@ -26,5 +27,14 @@ describe("mealForHour", () => {
     [0, "dinner"],
   ])("hour %i → %s", (hour, meal) => {
     expect(mealForHour(hour)).toBe(meal);
+  });
+});
+
+describe("shortName", () => {
+  it("keeps one word, or two after a generic first word", () => {
+    expect(shortName("কাচ্চি বিরিয়ানি")).toBe("কাচ্চি");
+    expect(shortName("খাসির পায়া")).toBe("খাসির পায়া");
+    expect(shortName("খাসির নলি ভুনা")).toBe("খাসির নলি");
+    expect(shortName("ফুচকা")).toBe("ফুচকা");
   });
 });

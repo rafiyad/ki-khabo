@@ -9,9 +9,9 @@ One question per screen, with a progress bar ("ধাপ ১/৫") and a cheer l
 
 1. **Gender:** পুরুষ / নারী
 2. **Age:** ১৮-এর কম, ১৮–২৫, ২৬–৩৫, ৩৬–৫০, ৫০+
-3. **Mood:** women see 23 moods (no "স্বাভাবিক"); men see all 24 until their list is defined. "সব Mood দেখুন" shows every mood to anyone.
+3. **Mood:** "🤷 জানি না" comes first for everyone. Then women see 23 moods (no "স্বাভাবিক"); men see all 24 until their list is defined. "সব Mood দেখুন" shows every mood to anyone.
 4. **Meal time:** pre-selected from the clock, with a note ("🕒 এখন ১:৩০ — তাই দুপুরের খাবার ধরলাম!"); tap to change.
-5. **Budget and restrictions:** budget (required), veg/non-veg, favorite categories, allergies.
+5. **Budget and restrictions:** budget (required), veg/non-veg, favorite categories (7: biryani/polao, home style, meat specials, street, fast food, sweets, drinks), allergies.
 
 Then the loading messages, then the result.
 

@@ -100,6 +100,8 @@ export const bn = {
     ] satisfies Fill[],
     explain: (mood: string, budgetLine: string) => `আপনার Mood বলছে "${mood}", আর Budget বলছে — ${budgetLine}`,
     explainNoMood: "Mood জানি না, তাই ভাগ্যের উপর ছেড়ে দিলাম!",
+    explainUnsure: "মন কী চায় মন নিজেও জানে না? সমস্যা নাই, আজকে ভাগ্যই আপনার শেফ! 🎲",
+    whyUnsure: "মুড জানা নাই, তাই একটা সারপ্রাইজ দিলাম 🎁",
     budgetLines: {
       b100: "কম খরচে পেট ভরানোর মিশন চলছে!",
       b200: "বাজেটও খুশি, পেটও খুশি!",
@@ -168,9 +170,11 @@ export const bn = {
     categoryNames: {
       biryani: "বিরিয়ানি",
       home: "ভাত-তরকারি",
+      meat: "মাংসের স্পেশাল",
       street: "স্ট্রিট ফুড",
       fast: "ফাস্ট ফুড",
       sweet: "মিষ্টি",
+      drinks: "পানীয়",
     } satisfies Record<CategoryId, string>,
   },
 
@@ -334,9 +338,11 @@ export const bn = {
     titles: {
       biryani: "🏅 বিরিয়ানি-বিশেষজ্ঞ",
       home: "🏠 ঘরোয়া মানুষ",
+      meat: "🍖 মাংস-মহারাজ",
       street: "🛺 স্ট্রিট-ফুড সম্রাট",
       fast: "🍔 ফাস্ট-ফুড ফ্যান",
       sweet: "🍮 মিষ্টিমুখ চ্যাম্পিয়ন",
+      drinks: "🥤 শরবত-সাধক",
     } satisfies Record<CategoryId, string>,
     oilTitle: "তেল-মিটার",
     oil: [

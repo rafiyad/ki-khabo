@@ -27,6 +27,7 @@ export const AGES: Option<AgeId>[] = [
 
 // ---------- Mood (always self-reported) ----------
 export type MoodId =
+  | "unsure"
   | "happy"
   | "sad"
   | "normal"
@@ -53,6 +54,7 @@ export type MoodId =
   | "heartbroken";
 
 export const MOODS: Option<MoodId>[] = [
+  { id: "unsure", emoji: "🤷", label: "জানি না", sub: "Not sure" },
   { id: "happy", emoji: "😄", label: "খুশি", sub: "Happy" },
   { id: "sad", emoji: "😢", label: "মন খারাপ", sub: "Sad" },
   { id: "normal", emoji: "😐", label: "স্বাভাবিক", sub: "Normal" },
@@ -87,6 +89,9 @@ export const MOOD_LIST_BY_GENDER: Record<GenderId, MoodId[]> = {
   female: ALL_MOOD_IDS.filter((id) => id !== "normal"),
   male: ALL_MOOD_IDS,
 };
+
+/** "জানি না": no dish is matched to it, so the pick is a surprise among good-value dishes. */
+export const UNSURE_MOOD: MoodId = "unsure";
 
 // Moods that show a gentle care note on the result. Self-reported, never a diagnosis.
 export const CARE_MOODS: MoodId[] = ["depressed", "anxiety"];
@@ -128,13 +133,15 @@ export const DIETS: Option<DietId>[] = [
 ];
 
 // ---------- Category ----------
-export type CategoryId = "biryani" | "home" | "street" | "fast" | "sweet";
+export type CategoryId = "biryani" | "home" | "meat" | "street" | "fast" | "sweet" | "drinks";
 export const CATEGORIES: Option<CategoryId>[] = [
   { id: "biryani", emoji: "🍛", label: "বিরিয়ানি/পোলাও" },
   { id: "home", emoji: "🏠", label: "ভাত-তরকারি" },
+  { id: "meat", emoji: "🍖", label: "মাংসের স্পেশাল" },
   { id: "street", emoji: "🛺", label: "স্ট্রিট ফুড" },
   { id: "fast", emoji: "🍔", label: "ফাস্ট ফুড" },
   { id: "sweet", emoji: "🍮", label: "মিষ্টি" },
+  { id: "drinks", emoji: "🥤", label: "পানীয়" },
 ];
 
 // ---------- Restrictions and allergies (hard rules, never overridden) ----------

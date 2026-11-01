@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { BATTLES } from "@/data/battles";
 import { FOODS } from "@/data/foods";
-import { CATEGORIES, MOOD_LIST_BY_GENDER, MOODS, RESTRICTIONS } from "@/data/options";
+import { CATEGORIES, MOOD_LIST_BY_GENDER, MOODS, RESTRICTIONS, UNSURE_MOOD } from "@/data/options";
 
 describe("food data", () => {
   it("has at least 40 dishes with unique ids", () => {
@@ -38,8 +38,8 @@ describe("food data", () => {
     }
   });
 
-  it("has at least 3 good matches (weight ≥ 60) for every mood", () => {
-    for (const m of MOODS) {
+  it("has at least 3 good matches (weight ≥ 60) for every mood except জানি না", () => {
+    for (const m of MOODS.filter((m) => m.id !== UNSURE_MOOD)) {
       const good = FOODS.filter((f) => (f.moods[m.id] ?? 0) >= 60);
       expect(good.length, m.id).toBeGreaterThanOrEqual(3);
     }
@@ -51,9 +51,19 @@ describe("food data", () => {
 });
 
 describe("mood lists", () => {
-  it("female list matches the brief (23 moods, no Normal)", () => {
-    expect(MOOD_LIST_BY_GENDER.female).toHaveLength(23);
+  it("female list matches the brief (23 moods, no Normal) after জানি না", () => {
+    expect(MOOD_LIST_BY_GENDER.female).toHaveLength(24);
+    expect(MOOD_LIST_BY_GENDER.female[0]).toBe(UNSURE_MOOD);
     expect(MOOD_LIST_BY_GENDER.female).not.toContain("normal");
+  });
+
+  it("shows জানি না first for everyone", () => {
+    expect(MOODS[0].id).toBe(UNSURE_MOOD);
+    expect(MOOD_LIST_BY_GENDER.male[0]).toBe(UNSURE_MOOD);
+  });
+
+  it("matches no dish to জানি না, so it stays a surprise", () => {
+    for (const f of FOODS) expect(f.moods[UNSURE_MOOD], f.id).toBeUndefined();
   });
 
   it("male list falls back to every mood until it's defined", () => {

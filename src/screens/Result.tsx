@@ -10,7 +10,7 @@ import { Mascot, type MascotExpression } from "@/components/Mascot";
 import { ProgressBar } from "@/components/ProgressBar";
 import { bn } from "@/content/bn";
 import { catalog, getFood, getHealth } from "@/data";
-import { CARE_MOODS, MOODS } from "@/data/options";
+import { CARE_MOODS, MOODS, UNSURE_MOOD } from "@/data/options";
 import { bnDigits } from "@/lib/bn-number";
 import { resultCopy, roastLine } from "@/lib/humor";
 import { healthNudge, isLocalHero, socialNudge } from "@/lib/nudges";
@@ -137,9 +137,14 @@ function ResultView({ current }: { current: CurrentPick }) {
         </ul>
 
         <div className="grid grid-cols-[96px_1fr_44px] items-center gap-2 text-[13px] font-semibold">
-          <span>{t.moodBar}</span>
-          <ProgressBar value={rec.scores.mood} label={t.moodBar} color="dhonepata" />
-          <span>{bnDigits(rec.scores.mood)}%</span>
+          {/* No mood match to show for "জানি না". */}
+          {answers.mood !== UNSURE_MOOD && (
+            <>
+              <span>{t.moodBar}</span>
+              <ProgressBar value={rec.scores.mood} label={t.moodBar} color="dhonepata" />
+              <span>{bnDigits(rec.scores.mood)}%</span>
+            </>
+          )}
           <span>{t.timeBar}</span>
           <ProgressBar value={rec.scores.time} label={t.timeBar} />
           <span>{bnDigits(rec.scores.time)}%</span>

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { getFood, getHealth } from "@/data";
 import { FOODS, type Food } from "@/data/foods";
 import { DEFAULT_HEALTH, HEALTH } from "@/data/health";
+import { CATEGORIES } from "@/data/options";
 import { SEASON_FOODS } from "@/data/seasons";
 import { cleanName, decodeChallenge, encodeChallenge, makeChallenge, NAME_MAX } from "@/lib/challenge";
 import { groupBudget, groupPick, type GroupMember, type GroupSetup } from "@/lib/group";
@@ -186,7 +187,7 @@ describe("group mode", () => {
   });
 
   it("still answers when everything is vetoed, and says so", () => {
-    const s = setup(["biryani", "home", "street", "fast", "sweet"].map((c) => member(c as GroupMember["veto"], "nolimit")));
+    const s = setup(CATEGORIES.map((c) => member(c.id, "nolimit")));
     const v = groupPick(FOODS, s, "lunch", seeded(1))!;
     expect(v.vetoesIgnored).toBe(true);
   });

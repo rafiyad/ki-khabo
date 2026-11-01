@@ -4,7 +4,7 @@
 export type SeasonId = "ramadan" | "winter" | "monsoon";
 
 export const SEASON_FOODS: Record<SeasonId, string[]> = {
-  ramadan: ["beguni-piyaju", "haleem", "jilapi", "chotpoti", "lassi"],
-  winter: ["pitha", "nihari", "khichuri-dim", "cha-singara"],
-  monsoon: ["khichuri-dim", "shobji-khichuri", "beguni-piyaju", "cha-singara"],
+  ramadan: ["beguni-piyaju", "alur-chop", "ghugni", "haleem", "jilapi", "lebu-shorbot", "chotpoti", "lassi"],
+  winter: ["pitha", "chitoi-pitha", "patishapta", "hasher-mangsho", "khashir-paya", "nihari", "khichuri-dim", "cha-singara"],
+  monsoon: ["khichuri-ilish", "bhuna-khichuri", "khichuri-dim", "shobji-khichuri", "beguni-piyaju", "cha-singara"],
 };

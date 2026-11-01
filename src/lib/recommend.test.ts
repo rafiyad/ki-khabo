@@ -201,3 +201,12 @@ describe("emergencyPick", () => {
     expect(emergencyPick(FOODS, EMPTY_ANSWERS, { rng: seeded(4) })).not.toBeNull();
   });
 });
+
+describe("জানি না mood", () => {
+  it("still gives a dish, chosen by budget, time and preference", () => {
+    const pick = recommend(FOODS, answers({ mood: "unsure" }), { rng: seeded(5) });
+    expect(pick).not.toBeNull();
+    expect(pick!.scores.mood).toBe(0);
+    expect(pick!.withinBudget).toBe(true);
+  });
+});

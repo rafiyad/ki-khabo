@@ -74,7 +74,7 @@ export const FOODS: Food[] = [
   },
   {
     id: "beef-kalabhuna", name: "বিফ কালাভুনা", nameEn: "Beef Kala Bhuna", emoji: "🥩", price: 420,
-    meals: ["lunch", "dinner"], category: "home", veg: false, contains: ["beef"],
+    meals: ["lunch", "dinner"], category: "meat", veg: false, contains: ["beef"],
     moods: { angry: 90, frustrated: 85, energetic: 80 },
   },
   {
@@ -99,12 +99,12 @@ export const FOODS: Food[] = [
   },
   {
     id: "nihari", name: "নেহারি আর নান", nameEn: "Nihari & Naan", emoji: "🍲", price: 300,
-    meals: ["breakfast", "dinner"], category: "home", veg: false, contains: ["beef", "milk"],
+    meals: ["breakfast", "dinner"], category: "meat", veg: false, contains: ["beef", "milk"],
     moods: { energetic: 75, angry: 70, lowenergy: 70, frustrated: 65 },
   },
   {
     id: "khashir-rezala", name: "খাসির রেজালা", nameEn: "Mutton Rezala", emoji: "🍖", price: 450,
-    meals: ["lunch", "dinner"], category: "home", veg: false, contains: ["milk", "nuts"],
+    meals: ["lunch", "dinner"], category: "meat", veg: false, contains: ["milk", "nuts"],
     moods: { happy: 75, jealous: 65, insecure: 65, disappointed: 60 },
   },
   {
@@ -181,7 +181,7 @@ export const FOODS: Food[] = [
   },
   {
     id: "kebab-paratha", name: "শিক কাবাব আর পরোটা", nameEn: "Seekh Kebab & Paratha", emoji: "🍢", price: 220,
-    meals: ["dinner"], category: "street", veg: false, contains: ["beef"],
+    meals: ["dinner"], category: "meat", veg: false, contains: ["beef"],
     moods: { angry: 80, energetic: 75, frustrated: 70 },
   },
 
@@ -213,7 +213,7 @@ export const FOODS: Food[] = [
   },
   {
     id: "naan-chaap", name: "নান আর চিকেন চাপ", nameEn: "Naan & Chicken Chaap", emoji: "🍢", price: 240,
-    meals: ["dinner"], category: "fast", veg: false, contains: ["milk"],
+    meals: ["dinner"], category: "meat", veg: false, contains: ["milk"],
     moods: { energetic: 85, frustrated: 75, angry: 75, overthinking: 60 },
   },
   {
@@ -267,5 +267,369 @@ export const FOODS: Food[] = [
     id: "lassi", name: "লাচ্ছি", nameEn: "Lassi", emoji: "🥛", price: 80,
     meals: ["snacks", "lunch"], category: "sweet", veg: true, contains: ["milk"],
     moods: { angry: 75, irritated: 75, calm: 60, restless: 60 },
+  },
+
+  // ---------- Meat specials (নলি, পায়া, মগজ, চাপ, কাবাব) ----------
+  {
+    id: "nalli-nihari", name: "নলি নিহারি", nameEn: "Nalli Nihari", emoji: "🦴", price: 350,
+    meals: ["breakfast", "dinner"], category: "meat", veg: false, contains: ["beef", "milk"],
+    moods: { energetic: 85, angry: 75, frustrated: 70, happy: 65 },
+  },
+  {
+    id: "khashir-nalli", name: "খাসির নলি ভুনা", nameEn: "Mutton Nalli Bhuna", emoji: "🦴", price: 420,
+    meals: ["lunch", "dinner"], category: "meat", veg: false, contains: [],
+    moods: { happy: 80, energetic: 75, jealous: 70, disappointed: 60 },
+  },
+  {
+    id: "khashir-paya", name: "খাসির পায়া", nameEn: "Mutton Paya", emoji: "🍲", price: 180,
+    meals: ["breakfast", "dinner"], category: "meat", veg: false, contains: [],
+    moods: { lowenergy: 80, energetic: 70, lonely: 65, calm: 60 },
+  },
+  {
+    id: "gorur-paya", name: "গরুর পায়া", nameEn: "Beef Paya", emoji: "🍲", price: 160,
+    meals: ["breakfast", "dinner"], category: "meat", veg: false, contains: ["beef"],
+    moods: { energetic: 75, lowenergy: 70, frustrated: 65 },
+  },
+  {
+    id: "mogoj-bhuna", name: "মগজ ভুনা", nameEn: "Brain Masala", emoji: "🧠", price: 250,
+    meals: ["lunch", "dinner"], category: "meat", veg: false, contains: ["beef"],
+    moods: { overthinking: 75, confused: 70, stressed: 60 },
+  },
+  {
+    id: "beef-chaap", name: "বিফ চাপ", nameEn: "Beef Chaap", emoji: "🍖", price: 260,
+    meals: ["dinner"], category: "meat", veg: false, contains: ["beef", "milk"],
+    moods: { angry: 80, energetic: 80, frustrated: 70 },
+  },
+  {
+    id: "khashir-chaap", name: "খাসির চাপ", nameEn: "Mutton Chaap", emoji: "🍖", price: 320,
+    meals: ["dinner"], category: "meat", veg: false, contains: ["milk"],
+    moods: { happy: 75, energetic: 75, jealous: 65 },
+  },
+  {
+    id: "suti-kabab", name: "সুতি কাবাব", nameEn: "Suti Kabab", emoji: "🍢", price: 300,
+    meals: ["dinner", "snacks"], category: "meat", veg: false, contains: ["beef", "milk"],
+    moods: { energetic: 70, happy: 70, bored: 65 },
+  },
+  {
+    id: "boti-kabab", name: "বটি কাবাব", nameEn: "Boti Kabab", emoji: "🍢", price: 200,
+    meals: ["dinner", "snacks"], category: "meat", veg: false, contains: ["beef", "milk"],
+    moods: { energetic: 70, angry: 70, happy: 60 },
+  },
+  {
+    id: "shami-kabab", name: "শামি কাবাব", nameEn: "Shami Kabab", emoji: "🧆", price: 60,
+    meals: ["snacks", "dinner"], category: "meat", veg: false, contains: ["beef", "egg"],
+    moods: { bored: 65, restless: 60, normal: 60 },
+  },
+  {
+    id: "chicken-tikka", name: "চিকেন টিক্কা", nameEn: "Chicken Tikka", emoji: "🍢", price: 220,
+    meals: ["dinner", "snacks"], category: "meat", veg: false, contains: ["milk"],
+    moods: { energetic: 70, happy: 65, irritated: 60 },
+  },
+  {
+    id: "tandoori-chicken", name: "তন্দুরি চিকেন", nameEn: "Tandoori Chicken", emoji: "🍗", price: 280,
+    meals: ["dinner"], category: "meat", veg: false, contains: ["milk"],
+    moods: { happy: 70, energetic: 70, frustrated: 65 },
+  },
+  {
+    id: "grill-chicken", name: "গ্রিল চিকেন আর নান", nameEn: "Grill Chicken & Naan", emoji: "🍗", price: 250,
+    meals: ["dinner"], category: "meat", veg: false, contains: ["milk", "egg"],
+    moods: { energetic: 75, happy: 65, heartbroken: 65, stressed: 60 },
+  },
+  {
+    id: "chui-jhal-khashi", name: "চুই ঝাল খাসি", nameEn: "Chui Jhal Mutton", emoji: "🌶️", price: 400,
+    meals: ["lunch", "dinner"], category: "meat", veg: false, contains: [],
+    moods: { angry: 80, energetic: 80, frustrated: 75, bored: 60 },
+  },
+  {
+    id: "mezbani-gosht", name: "মেজবানি গরুর মাংস", nameEn: "Mezbani Beef", emoji: "🍛", price: 300,
+    meals: ["lunch", "dinner"], category: "meat", veg: false, contains: ["beef"],
+    moods: { happy: 85, energetic: 75, lonely: 60 },
+  },
+  {
+    id: "satkora-gosht", name: "সাতকরা গরুর মাংস", nameEn: "Satkora Beef", emoji: "🍛", price: 320,
+    meals: ["lunch", "dinner"], category: "meat", veg: false, contains: ["beef"],
+    moods: { energetic: 75, happy: 70, bored: 60 },
+  },
+  {
+    id: "bot-bhuna", name: "বট ভুনা", nameEn: "Tripe Bhuna", emoji: "🍲", price: 180,
+    meals: ["lunch", "dinner"], category: "meat", veg: false, contains: ["beef"],
+    moods: { energetic: 65, frustrated: 65, bored: 60 },
+  },
+  {
+    id: "murgir-kolija", name: "মুরগির কলিজা ভুনা", nameEn: "Chicken Liver Bhuna", emoji: "🍲", price: 120,
+    meals: ["lunch", "dinner"], category: "meat", veg: false, contains: [],
+    moods: { lowenergy: 65, normal: 60, bored: 60 },
+  },
+
+  // ---------- More biryani / polao ----------
+  {
+    id: "khashir-biryani", name: "খাসির বিরিয়ানি", nameEn: "Mutton Biryani", emoji: "🍛", price: 320,
+    meals: ["lunch", "dinner"], category: "biryani", veg: false, contains: ["milk"],
+    moods: { happy: 85, heartbroken: 75, jealous: 65 },
+  },
+  {
+    id: "ilish-polao", name: "ইলিশ পোলাও", nameEn: "Ilish Polao", emoji: "🐟", price: 450,
+    meals: ["lunch", "dinner"], category: "biryani", veg: false, contains: ["fish", "milk"],
+    moods: { happy: 75, calm: 65, disappointed: 60 },
+  },
+  {
+    id: "polao-roast", name: "পোলাও আর মুরগির রোস্ট", nameEn: "Polao & Chicken Roast", emoji: "🍗", price: 350,
+    meals: ["lunch", "dinner"], category: "biryani", veg: false, contains: ["milk", "nuts"],
+    moods: { happy: 85, disappointed: 65, lonely: 65 },
+  },
+
+  // ---------- More home style ----------
+  {
+    id: "bhuna-khichuri", name: "ভুনা খিচুড়ি আর গরুর মাংস", nameEn: "Bhuna Khichuri & Beef", emoji: "🍛", price: 220,
+    meals: ["lunch", "dinner"], category: "home", veg: false, contains: ["beef"],
+    moods: { sad: 80, lonely: 75, heartbroken: 70 },
+  },
+  {
+    id: "khichuri-ilish", name: "খিচুড়ি আর ইলিশ ভাজা", nameEn: "Khichuri & Fried Ilish", emoji: "🍲", price: 400,
+    meals: ["lunch", "dinner"], category: "home", veg: false, contains: ["fish"],
+    moods: { happy: 80, sad: 70, calm: 65, lonely: 65 },
+  },
+  {
+    id: "hasher-mangsho", name: "হাঁসের মাংস আর চালের রুটি", nameEn: "Duck Curry & Rice Ruti", emoji: "🦆", price: 280,
+    meals: ["breakfast", "lunch", "dinner"], category: "home", veg: false, contains: [],
+    moods: { happy: 75, lonely: 70, calm: 60 },
+  },
+  {
+    id: "gorur-bhuna", name: "গরুর মাংস ভুনা আর ভাত", nameEn: "Beef Bhuna & Rice", emoji: "🥩", price: 220,
+    meals: ["lunch", "dinner"], category: "home", veg: false, contains: ["beef"],
+    moods: { energetic: 75, angry: 70, happy: 65, frustrated: 65 },
+  },
+  {
+    id: "shutki-bhaat", name: "শুঁটকি ভর্তা আর ভাত", nameEn: "Shutki Bhorta & Rice", emoji: "🐟", price: 130,
+    meals: ["lunch", "dinner"], category: "home", veg: false, contains: ["fish"],
+    moods: { lonely: 70, normal: 65, bored: 60 },
+  },
+  {
+    id: "lal-shak-daal", name: "লাল শাক, ডাল আর ভাত", nameEn: "Red Spinach, Daal & Rice", emoji: "🥬", price: 80,
+    meals: ["lunch", "dinner"], category: "home", veg: true, contains: [],
+    moods: { calm: 75, guilty: 75, normal: 70, anxiety: 60 },
+  },
+  {
+    id: "pabda-jhol", name: "পাবদা মাছের ঝোল", nameEn: "Pabda Fish Curry", emoji: "🐟", price: 220,
+    meals: ["lunch", "dinner"], category: "home", veg: false, contains: ["fish"],
+    moods: { calm: 75, lonely: 75, normal: 65 },
+  },
+  {
+    id: "rui-bhuna", name: "রুই মাছ ভুনা", nameEn: "Rui Fish Bhuna", emoji: "🐟", price: 200,
+    meals: ["lunch", "dinner"], category: "home", veg: false, contains: ["fish"],
+    moods: { normal: 75, calm: 65, guilty: 60 },
+  },
+  {
+    id: "loitta-fry", name: "লইট্টা ফ্রাই", nameEn: "Loitta Fry", emoji: "🐟", price: 180,
+    meals: ["lunch", "dinner", "snacks"], category: "home", veg: false, contains: ["fish"],
+    moods: { bored: 65, happy: 65, restless: 60 },
+  },
+  {
+    id: "kachki-chorchori", name: "কাচকি মাছের চচ্চড়ি", nameEn: "Kachki Fish Chorchori", emoji: "🐟", price: 140,
+    meals: ["lunch", "dinner"], category: "home", veg: false, contains: ["fish"],
+    moods: { lonely: 70, normal: 70, calm: 60 },
+  },
+  {
+    id: "dim-bhuna", name: "ডিম ভুনা আর ভাত", nameEn: "Egg Bhuna & Rice", emoji: "🥚", price: 90,
+    meals: ["lunch", "dinner"], category: "home", veg: false, contains: ["egg"],
+    moods: { normal: 75, lowenergy: 70, lonely: 60, overwhelmed: 60 },
+  },
+  {
+    id: "kalai-ruti", name: "কালাই রুটি আর বেগুন ভর্তা", nameEn: "Kalai Ruti & Begun Bhorta", emoji: "🫓", price: 80,
+    meals: ["breakfast", "dinner"], category: "home", veg: true, contains: [],
+    moods: { normal: 70, calm: 70, lonely: 65 },
+  },
+
+  // ---------- More street food ----------
+  {
+    id: "velpuri", name: "ভেলপুরি", nameEn: "Velpuri", emoji: "🥗", price: 50,
+    meals: ["snacks"], category: "street", veg: false, contains: ["egg"],
+    moods: { bored: 80, restless: 70, happy: 65 },
+  },
+  {
+    id: "doi-fuchka", name: "দই ফুচকা", nameEn: "Doi Fuchka", emoji: "🥟", price: 80,
+    meals: ["snacks"], category: "street", veg: false, contains: ["egg", "milk"],
+    moods: { happy: 75, bored: 75, jealous: 65 },
+  },
+  {
+    id: "ghugni", name: "ঘুগনি", nameEn: "Ghugni", emoji: "🫘", price: 30,
+    meals: ["snacks", "breakfast"], category: "street", veg: true, contains: [],
+    moods: { lonely: 65, normal: 65, calm: 60, bored: 60 },
+  },
+  {
+    id: "alur-chop", name: "আলুর চপ", nameEn: "Alur Chop", emoji: "🥔", price: 20,
+    meals: ["snacks"], category: "street", veg: true, contains: [],
+    moods: { bored: 70, sad: 65, restless: 60 },
+  },
+  {
+    id: "shobji-somucha", name: "সবজি সমুচা", nameEn: "Vegetable Somucha", emoji: "🥟", price: 20,
+    meals: ["snacks"], category: "street", veg: true, contains: [],
+    moods: { overthinking: 70, bored: 65, stressed: 60 },
+  },
+  {
+    id: "dal-puri", name: "ডালপুরি", nameEn: "Dal Puri", emoji: "🫓", price: 30,
+    meals: ["breakfast", "snacks"], category: "street", veg: true, contains: [],
+    moods: { normal: 70, bored: 65, lowenergy: 60, lonely: 60 },
+  },
+  {
+    id: "moglai-paratha", name: "মোগলাই পরোটা", nameEn: "Moglai Paratha", emoji: "🫓", price: 120,
+    meals: ["snacks", "dinner"], category: "street", veg: false, contains: ["egg", "beef"],
+    moods: { happy: 70, bored: 70, frustrated: 65 },
+  },
+  {
+    id: "chicken-roll", name: "চিকেন রোল", nameEn: "Chicken Roll", emoji: "🌯", price: 100,
+    meals: ["snacks", "dinner"], category: "street", veg: false, contains: ["egg"],
+    moods: { restless: 65, bored: 65, irritated: 60 },
+  },
+  {
+    id: "chitoi-pitha", name: "চিতই পিঠা আর শুঁটকি ভর্তা", nameEn: "Chitoi Pitha & Shutki Bhorta", emoji: "🥞", price: 40,
+    meals: ["breakfast", "snacks"], category: "street", veg: false, contains: ["fish"],
+    moods: { lonely: 75, calm: 70, sad: 65 },
+  },
+  {
+    id: "bakorkhani", name: "বাকরখানি", nameEn: "Bakorkhani", emoji: "🥯", price: 30,
+    meals: ["breakfast", "snacks"], category: "street", veg: true, contains: ["milk"],
+    moods: { calm: 70, overthinking: 65, lonely: 60 },
+  },
+  {
+    id: "badam-bhaja", name: "বাদাম ভাজা", nameEn: "Roasted Peanuts", emoji: "🥜", price: 20,
+    meals: ["snacks"], category: "street", veg: true, contains: ["nuts"],
+    moods: { bored: 75, overthinking: 70, calm: 60, lonely: 60 },
+  },
+  {
+    id: "fol-makha", name: "ফল মাখা (আমড়া-পেয়ারা)", nameEn: "Spiced Fruit Mix", emoji: "🍈", price: 30,
+    meals: ["snacks"], category: "street", veg: true, contains: [],
+    moods: { bored: 70, irritated: 65, restless: 65, jealous: 60 },
+  },
+  {
+    id: "bhutta-pora", name: "ভুট্টা পোড়া", nameEn: "Roasted Corn", emoji: "🌽", price: 30,
+    meals: ["snacks"], category: "street", veg: true, contains: [],
+    moods: { calm: 70, lonely: 65, bored: 65, sad: 60 },
+  },
+
+  // ---------- More fast food ----------
+  {
+    id: "momo", name: "চিকেন মোমো", nameEn: "Chicken Momo", emoji: "🥟", price: 150,
+    meals: ["snacks", "dinner"], category: "fast", veg: false, contains: [],
+    moods: { bored: 70, calm: 65, happy: 65, restless: 60 },
+  },
+  {
+    id: "pasta", name: "হোয়াইট সস পাস্তা", nameEn: "White Sauce Pasta", emoji: "🍝", price: 300,
+    meals: ["lunch", "dinner"], category: "fast", veg: false, contains: ["milk"],
+    moods: { heartbroken: 70, overwhelmed: 65, bored: 60 },
+  },
+  {
+    id: "club-sandwich", name: "ক্লাব স্যান্ডউইচ", nameEn: "Club Sandwich", emoji: "🥪", price: 220,
+    meals: ["snacks", "lunch"], category: "fast", veg: false, contains: ["egg", "milk"],
+    moods: { normal: 60, stressed: 60, overwhelmed: 60 },
+  },
+  {
+    id: "chicken-wings", name: "নাগা চিকেন উইংস", nameEn: "Naga Chicken Wings", emoji: "🍗", price: 280,
+    meals: ["snacks", "dinner"], category: "fast", veg: false, contains: [],
+    moods: { angry: 80, frustrated: 75, energetic: 70 },
+  },
+  {
+    id: "french-fries", name: "ফ্রেঞ্চ ফ্রাই", nameEn: "French Fries", emoji: "🍟", price: 120,
+    meals: ["snacks"], category: "fast", veg: true, contains: [],
+    moods: { bored: 75, sad: 65, restless: 60, irritated: 60 },
+  },
+  {
+    id: "packet-noodles", name: "প্যাকেটের নুডলস", nameEn: "Instant Noodles", emoji: "🍜", price: 40,
+    meals: ["snacks", "dinner"], category: "fast", veg: false, contains: ["egg"],
+    moods: { lowenergy: 75, lonely: 70, overwhelmed: 65 },
+  },
+  {
+    id: "chicken-patties", name: "চিকেন পেটিস", nameEn: "Chicken Patties", emoji: "🥐", price: 40,
+    meals: ["breakfast", "snacks"], category: "fast", veg: false, contains: ["egg", "milk"],
+    moods: { bored: 60, normal: 60, lowenergy: 60 },
+  },
+
+  // ---------- More sweets and pitha ----------
+  {
+    id: "chomchom", name: "চমচম", nameEn: "Chomchom", emoji: "🍡", price: 60,
+    meals: ["snacks"], category: "sweet", veg: true, contains: ["milk"],
+    moods: { happy: 80, disappointed: 65, guilty: 60 },
+  },
+  {
+    id: "kalojam", name: "কালোজাম", nameEn: "Kalojam", emoji: "🍡", price: 50,
+    meals: ["snacks"], category: "sweet", veg: false, contains: ["milk", "egg"],
+    moods: { happy: 70, sad: 65, guilty: 60 },
+  },
+  {
+    id: "shondesh", name: "সন্দেশ", nameEn: "Shondesh", emoji: "🍥", price: 50,
+    meals: ["snacks"], category: "sweet", veg: true, contains: ["milk"],
+    moods: { happy: 75, calm: 60, disappointed: 60 },
+  },
+  {
+    id: "payesh", name: "পায়েস", nameEn: "Payesh", emoji: "🍚", price: 80,
+    meals: ["snacks", "lunch"], category: "sweet", veg: true, contains: ["milk", "nuts"],
+    moods: { calm: 75, lonely: 75, happy: 70 },
+  },
+  {
+    id: "firni", name: "ফিরনি", nameEn: "Firni", emoji: "🍮", price: 60,
+    meals: ["snacks"], category: "sweet", veg: true, contains: ["milk", "nuts"],
+    moods: { calm: 70, happy: 65, heartbroken: 60 },
+  },
+  {
+    id: "zarda", name: "জর্দা", nameEn: "Zarda", emoji: "🍚", price: 80,
+    meals: ["snacks", "lunch"], category: "sweet", veg: true, contains: ["milk", "nuts"],
+    moods: { happy: 75, disappointed: 60, guilty: 60 },
+  },
+  {
+    id: "patishapta", name: "পাটিসাপটা পিঠা", nameEn: "Patishapta Pitha", emoji: "🥞", price: 40,
+    meals: ["breakfast", "snacks"], category: "sweet", veg: true, contains: ["milk"],
+    moods: { lonely: 70, calm: 70, sad: 60 },
+  },
+  {
+    id: "kulfi", name: "কুলফি মালাই", nameEn: "Kulfi Malai", emoji: "🍦", price: 40,
+    meals: ["snacks"], category: "sweet", veg: true, contains: ["milk", "nuts"],
+    moods: { heartbroken: 70, irritated: 70, restless: 60 },
+  },
+  {
+    id: "hawai-mithai", name: "হাওয়াই মিঠাই", nameEn: "Cotton Candy", emoji: "🍭", price: 20,
+    meals: ["snacks"], category: "sweet", veg: true, contains: [],
+    moods: { happy: 70, bored: 70, sad: 60 },
+  },
+
+  // ---------- Drinks ----------
+  {
+    id: "borhani", name: "বোরহানি", nameEn: "Borhani", emoji: "🥛", price: 60,
+    meals: ["snacks"], category: "drinks", veg: true, contains: ["milk"],
+    moods: { angry: 70, calm: 70, irritated: 70 },
+  },
+  {
+    id: "matha", name: "মাঠা", nameEn: "Matha", emoji: "🥛", price: 40,
+    meals: ["snacks"], category: "drinks", veg: true, contains: ["milk"],
+    moods: { calm: 70, irritated: 65, angry: 60 },
+  },
+  {
+    id: "malai-cha", name: "মালাই চা", nameEn: "Malai Cha", emoji: "☕", price: 40,
+    meals: ["breakfast", "snacks"], category: "drinks", veg: true, contains: ["milk"],
+    moods: { overthinking: 80, stressed: 75, lonely: 65 },
+  },
+  {
+    id: "cold-coffee", name: "কোল্ড কফি", nameEn: "Cold Coffee", emoji: "🧋", price: 180,
+    meals: ["snacks"], category: "drinks", veg: true, contains: ["milk"],
+    moods: { stressed: 70, lowenergy: 70, bored: 65, energetic: 60 },
+  },
+  {
+    id: "akher-rosh", name: "আখের রস", nameEn: "Sugarcane Juice", emoji: "🎋", price: 30,
+    meals: ["snacks"], category: "drinks", veg: true, contains: [],
+    moods: { lowenergy: 75, irritated: 70, restless: 65 },
+  },
+  {
+    id: "daber-pani", name: "ডাবের পানি", nameEn: "Coconut Water", emoji: "🥥", price: 80,
+    meals: ["snacks"], category: "drinks", veg: true, contains: [],
+    moods: { calm: 80, lowenergy: 75, anxiety: 65, stressed: 60 },
+  },
+  {
+    id: "lebu-shorbot", name: "লেবুর শরবত", nameEn: "Lemon Sherbet", emoji: "🍋", price: 20,
+    meals: ["snacks"], category: "drinks", veg: true, contains: [],
+    moods: { irritated: 75, angry: 70, restless: 65, lowenergy: 60 },
+  },
+  {
+    id: "fruit-juice", name: "মৌসুমি ফলের জুস", nameEn: "Seasonal Fruit Juice", emoji: "🧃", price: 100,
+    meals: ["breakfast", "snacks"], category: "drinks", veg: true, contains: [],
+    moods: { happy: 70, lowenergy: 65, calm: 60 },
   },
 ];
