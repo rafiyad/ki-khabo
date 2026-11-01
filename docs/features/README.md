@@ -21,5 +21,6 @@ One file per feature. Copy [_template.md](_template.md) to add a new one, and li
 | [Daily horoscope](daily-horoscope.md) | Same dish for everyone each day | Done | [3](../sprints/sprint-03.md) |
 | [Weekly report](weekly-wrapped.md) | 7-day summary card from on-device history | Done | [3](../sprints/sprint-03.md) |
 | [Seasonal modes](seasonal-modes.md) | Ramadan, winter and monsoon banners | Done | [3](../sprints/sprint-03.md) |
+| [Live counters](live-stats.md) | Today's visits and people who chose food, top right | Done (needs Upstash) | [3](../sprints/sprint-03.md) |
 
 Status values: `Idea` → `Planned` → `In progress` → `Done`

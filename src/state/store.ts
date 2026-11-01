@@ -6,6 +6,7 @@ import { isLateNight, type AcceptedEntry } from "@/lib/nudges";
 import { emergencyPick, EMPTY_ANSWERS, isSafeFor, recommend, type Answers, type Recommendation } from "@/lib/recommend";
 import { consume, parseQuota, remaining, rollover, type Quota } from "@/lib/quota";
 import { local, readJSON, session as sessionStore, writeJSON } from "@/lib/storage";
+import { trackChosen } from "@/state/live-stats";
 
 // Session state (this visit only, sessionStorage): answers and the current pick.
 // Device state (localStorage): daily limits, history and saved preferences (budget, diet,
@@ -201,6 +202,7 @@ export function useAppStateValue() {
     const current = sessionState.current;
     if (!current) return;
     setDevice((d) => ({ ...d, accepted: [{ foodId: current.foodId, at: Date.now() }, ...d.accepted].slice(0, 30) }));
+    trackChosen();
   }
 
   /** Clears history and answers. Daily chances stay, so this isn't a way around the limit. */

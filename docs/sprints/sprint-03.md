@@ -1,7 +1,7 @@
 # Sprint 3: Funny, healthy, social and viral
 
-**Dates:** 2026-10-31 → 2026-10-31
-**Status:** Done (not committed yet; on branch `feature/funny-health-social`)
+**Dates:** 2026-10-31 → 2026-11-01
+**Status:** Done on branch `feature/funny-health-social` (features in `37d28f4`; live counters not committed yet)
 
 ## Goal
 
@@ -18,10 +18,15 @@ Make the app more viral and give people reasons to come back, while adding socia
 - [x] [Weekly food report](../features/weekly-wrapped.md)
 - [x] [Seasonal modes](../features/seasonal-modes.md): Ramadan, winter, monsoon
 
+## Added mid-sprint
+
+- [x] [Live counters](../features/live-stats.md): today's visits and people who chose food, via a Vercel Function + Redis (Upstash or `REDIS_URL`) ([0006](../decisions/0006-live-counters.md))
+- [ ] Connect the Redis database in Vercel and check the counters on the real deploy
+
 ## Outcome
 
-- **Tests:** 73 unit tests pass (26 new); typecheck, lint and build clean.
-- **Browser test** (headless Chromium, 390px and 320px): 48 of 48 checks pass, no console errors. Covers every new screen, PNG export of the weekly and group cards, late night and Ramadan via a fake clock, and no sideways scrolling.
+- **Tests:** 84 unit tests pass (37 new, including the stats API against a fake Upstash); typecheck, lint and build clean.
+- **Browser test** (headless Chromium, 390px and 320px): 48 of 48 feature checks and 13 of 13 live-counter checks (mocked API) pass. The only console errors are the expected 404s for `/api/stats` in local preview. Covers every new screen, PNG export of the weekly and group cards, late night and Ramadan via a fake clock, and no sideways scrolling.
 - **Bundle:** main chunk 105 → 108 kB gzipped (new copy on the landing page); new screens are lazy-loaded.
 - **Not done:** axe-core and Lighthouse re-run on the new screens; per-dish Open Graph images; helpline number (needs verification).
 

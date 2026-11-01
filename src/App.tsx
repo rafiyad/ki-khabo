@@ -1,11 +1,13 @@
 import { LazyMotion, MotionConfig, domAnimation, m } from "motion/react";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Link, Route, Routes, useLocation } from "react-router";
 import { buttonClass } from "@/components/button-class";
 import { Chip } from "@/components/Chip";
+import { LiveStatsBadge } from "@/components/LiveStatsBadge";
 import { bn } from "@/content/bn";
 import { Landing } from "@/screens/Landing";
 import { AppStateProvider } from "@/state/app-state";
+import { startLiveStats } from "@/state/live-stats";
 
 // Landing loads with the app; every other screen loads when first opened.
 const Battle = lazy(() => import("@/screens/Battle").then((mod) => ({ default: mod.Battle })));
@@ -62,6 +64,7 @@ function AnimatedRoutes() {
 }
 
 export function App() {
+  useEffect(() => startLiveStats(), []);
   return (
     <BrowserRouter>
       <AppStateProvider>
@@ -74,7 +77,10 @@ export function App() {
                 <Link to="/" className={buttonClass("neutral", "border-b-[3px] px-3 text-[17px]")}>
                   {bn.brandWithEmoji}
                 </Link>
-                <Chip tone="dhonepata">{bn.noSignup}</Chip>
+                <div className="ml-auto flex flex-col items-end gap-1.5">
+                  <LiveStatsBadge />
+                  <Chip tone="dhonepata">{bn.noSignup}</Chip>
+                </div>
               </header>
               <main>
                 <AnimatedRoutes />

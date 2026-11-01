@@ -13,6 +13,13 @@ export const bn = {
   noSignup: "রেজিস্ট্রেশন লাগবে না",
   hashtag: "#কিখাবো",
 
+  // Live counters in the header (src/components/LiveStatsBadge.tsx).
+  stats: {
+    label: "আজকের লাইভ হিসাব",
+    visits: (n: string) => `আজ ${n} জন এসেছে`,
+    chosen: (n: string) => `${n} জন খাবার ঠিক করেছে`,
+  },
+
   landing: {
     sticker: "খাবার আছে, টাকা আছে, ক্ষুধাও আছে — কিন্তু কী খাবো বুঝতেছি না!",
     titleBefore: "আজকে কী খাবেন, নাকি আবার ",

@@ -26,7 +26,8 @@ From the [brief](brief.md) (P0 is done; P1 is mostly done):
 
 ## After sprint 3
 
-- Review the new copy (warnings, nudges, group and challenge lines) with the product owner, then commit `feature/funny-health-social`
+- In Vercel, connect the Redis database `redis-fuchsia-paddle` to the ki-khabo project, set the function region to Mumbai (bom1), then redeploy so the live counters show ([live-stats.md](features/live-stats.md))
+- Review the new copy (warnings, nudges, group and challenge lines) with the product owner, then merge `feature/funny-health-social`
 - Re-run axe-core and Lighthouse on the new screens
 - Landing page is getting long on phones: decide what comes first, maybe collapse the feature tiles
 - Open Graph image per dish so challenge and share links preview well

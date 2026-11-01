@@ -19,14 +19,15 @@ The **কি খাবো?** MVP is built and verified locally: a Vite + React i
 - [x] axe-core: no violations on any screen; every tap target ≥ 48px
 - [x] Layout checked at 320, 390, 768, 1366 and 1920px wide: no sideways scrolling at any size
 - [x] Committed and pushed to `origin/main`
-- [x] Sprint 3 (on branch `feature/funny-health-social`, not committed yet): health warnings, social nudges, friend challenge, group mode, quick mode, daily horoscope, weekly report, seasonal modes. 73 unit tests; 48/48 browser checks
+- [x] Sprint 3 (branch `feature/funny-health-social`, commit `37d28f4`; live counters not committed yet): health warnings, social nudges, friend challenge, group mode, quick mode, daily horoscope, weekly report, seasonal modes, live counters (Vercel Function + Redis). 84 unit tests; 48/48 + 13/13 browser checks
 
 ## In progress
 
 - [ ] First deploy to Vercel
 - [ ] Check on real phones
 - [ ] Desktop layout improvements (see known issues)
-- [ ] Review and commit sprint 3; re-run axe-core and Lighthouse on the new screens
+- [ ] Re-run axe-core and Lighthouse on the new screens
+- [ ] Connect the Redis database to the project in Vercel for the live counters
 
 ## Known issues
 
@@ -40,4 +41,4 @@ The **কি খাবো?** MVP is built and verified locally: a Vite + React i
 
 ## Current sprint
 
-[Sprint 2](sprints/sprint-02.md) (deploy left) · [Sprint 3](sprints/sprint-03.md) (done, not committed)
+[Sprint 2](sprints/sprint-02.md) (deploy left) · [Sprint 3](sprints/sprint-03.md) (done; connect Redis in Vercel left)
