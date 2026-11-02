@@ -24,6 +24,7 @@ Make the app more viral and give people reasons to come back, while adding socia
 - [ ] Connect the Redis database in Vercel and check the counters on the real deploy
 - [x] 70 more dishes (47 → 117): Old Dhaka and meat specials (নলি নিহারি, খাসির নলি, খাসির/গরুর পায়া, মগজ ভুনা, বিফ/খাসির চাপ, সুতি/বটি/শামি কাবাব, টিক্কা, তন্দুরি, গ্রিল), regional dishes (চুই ঝাল, মেজবানি, সাতকরা, কালাই রুটি, হাঁসের মাংস), more street food (ভেলপুরি, ঘুগনি, আলুর চপ, সমুচা, ডালপুরি, মোগলাই, চিতই, বাকরখানি, ভুট্টা পোড়া…), fish, pitha, sweets and drinks
 - [x] Two new categories: 🍖 মাংসের স্পেশাল (5 existing meat dishes moved there) and 🥤 পানীয়; 7 new battle pairs; more seasonal picks (iftar, winter pitha and duck, rainy-day khichuri)
+- [x] Live counters changed to all-time totals (visits per phone per day, every dish chosen); moving to Upstash so totals survive restarts
 - [x] "🤷 জানি না" as the first mood option: surprise pick, its own result copy, no mood-match bar
 - [x] Wheel and battle labels use two words when the first is generic ("খাসির পায়া", not "খাসির")
 

@@ -202,7 +202,7 @@ export function useAppStateValue() {
     const current = sessionState.current;
     if (!current) return;
     setDevice((d) => ({ ...d, accepted: [{ foodId: current.foodId, at: Date.now() }, ...d.accepted].slice(0, 30) }));
-    trackChosen();
+    trackChosen(current.seed);
   }
 
   /** Clears history and answers. Daily chances stay, so this isn't a way around the limit. */

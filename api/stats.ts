@@ -6,9 +6,9 @@ import { handleStats, upstashRunner } from "./_lib/stats-core.js";
 const run = upstashRunner(process.env, fetch) ?? (process.env.REDIS_URL ? redisRunner(process.env.REDIS_URL) : null);
 
 export function GET(request: Request): Promise<Response> {
-  return handleStats(request, run, new Date());
+  return handleStats(request, run);
 }
 
 export function POST(request: Request): Promise<Response> {
-  return handleStats(request, run, new Date());
+  return handleStats(request, run);
 }

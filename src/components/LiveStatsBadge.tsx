@@ -2,7 +2,7 @@ import { bn } from "@/content/bn";
 import { bnCount } from "@/lib/stats";
 import { useLiveStats } from "@/state/live-stats";
 
-/** Today's visitors and people who chose a dish, top right. Hidden until the numbers load. */
+/** All-time visits and dishes chosen, top right. Hidden until the numbers load. */
 export function LiveStatsBadge() {
   const stats = useLiveStats();
   if (!stats) return null;

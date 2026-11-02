@@ -15,9 +15,9 @@ export const bn = {
 
   // Live counters in the header (src/components/LiveStatsBadge.tsx).
   stats: {
-    label: "আজকের লাইভ হিসাব",
-    visits: (n: string) => `আজ ${n} জন এসেছে`,
-    chosen: (n: string) => `${n} জন খাবার ঠিক করেছে`,
+    label: "এখন পর্যন্ত মোট হিসাব",
+    visits: (n: string) => `মোট ${n} বার ভিজিট`,
+    chosen: (n: string) => `${n} বার খাবার ঠিক হয়েছে`,
   },
 
   landing: {

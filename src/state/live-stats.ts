@@ -2,9 +2,10 @@ import { useSyncExternalStore } from "react";
 import { dhakaDay, parseMarks, parseStats, type LiveStats, type StatsMarks } from "@/lib/stats";
 import { local, readJSON, writeJSON } from "@/lib/storage";
 
-// Today's live counters for the header. Each device counts once a day as a visit,
-// and once a day as "chose a dish" (first "এইটাই খাবো"). Only the event name is
-// sent: no mood, answers or ids. If the API isn't reachable the badge stays hidden.
+// All-time live counters for the header. Each device adds one visit per Dhaka day,
+// and one "chosen" per dish it accepts ("এইটাই খাবো"; the same pick only once, even
+// after a reload). Only the event name is sent: no mood, answers or dish ids.
+// If the API isn't reachable the badge stays hidden.
 
 const MARKS_KEY = "ki-khabo:stats:v1";
 const REFRESH_MS = 60_000;
@@ -23,14 +24,13 @@ function marks(): StatsMarks {
   return parseMarks(readJSON(local, MARKS_KEY));
 }
 
-/** Sends an event once per device per Dhaka day; marks it only after the server has it. */
-function countOnce(event: "visit" | "chosen", mark: keyof StatsMarks) {
-  const today = dhakaDay(new Date());
-  if (marks()[mark] === today || pending.has(event)) return;
+/** Sends an event unless `mark` already holds `value`; saves the mark only after the server has it. */
+function countOnce<K extends keyof StatsMarks>(event: "visit" | "chosen", mark: K, value: NonNullable<StatsMarks[K]>) {
+  if (marks()[mark] === value || pending.has(event)) return;
   pending.add(event);
   void request(event).then((ok) => {
     pending.delete(event);
-    if (ok) writeJSON(local, MARKS_KEY, { ...marks(), [mark]: today });
+    if (ok) writeJSON(local, MARKS_KEY, { ...marks(), [mark]: value });
   });
 }
 
@@ -53,12 +53,13 @@ async function request(event: "visit" | "chosen" | null): Promise<boolean> {
   }
 }
 
-/** Counts this device's visit (once a day) and loads today's numbers. Call once on app start. */
+/** Counts this device's visit (once per Dhaka day) and loads the totals. Call once on app start. */
 export function startLiveStats(): () => void {
-  if (marks().visitDay === dhakaDay(new Date())) {
+  const today = dhakaDay(new Date());
+  if (marks().visitDay === today) {
     if (!snapshot) void request(null);
   } else {
-    countOnce("visit", "visitDay");
+    countOnce("visit", "visitDay", today);
   }
 
   const refresh = () => {
@@ -68,9 +69,9 @@ export function startLiveStats(): () => void {
   return () => document.removeEventListener("visibilitychange", refresh);
 }
 
-/** Counts this device as "chose a dish today" the first time it accepts one. */
-export function trackChosen(): void {
-  countOnce("chosen", "chosenDay");
+/** Adds one dish chosen. `pickSeed` identifies the pick, so accepting it again after a reload doesn't count twice. */
+export function trackChosen(pickSeed: number): void {
+  countOnce("chosen", "chosenPick", pickSeed);
 }
 
 function subscribe(listener: () => void) {

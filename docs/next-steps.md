@@ -26,7 +26,7 @@ From the [brief](brief.md) (P0 is done; P1 is mostly done):
 
 ## After sprint 3
 
-- In Vercel, connect the Redis database `redis-fuchsia-paddle` to the ki-khabo project, set the function region to Mumbai (bom1), then redeploy so the live counters show ([live-stats.md](features/live-stats.md))
+- In Vercel, disconnect `redis-fuchsia-paddle`, create and connect **Upstash for Redis** (free, Mumbai), keep the function region on Mumbai (bom1), then redeploy so the all-time counters work ([live-stats.md](features/live-stats.md#setup-one-time-in-vercel))
 - Review the new copy (warnings, nudges, group and challenge lines) with the product owner, then merge `feature/funny-health-social`
 - Re-run axe-core and Lighthouse on the new screens
 - Landing page is getting long on phones: decide what comes first, maybe collapse the feature tiles

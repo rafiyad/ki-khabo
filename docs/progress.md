@@ -27,7 +27,7 @@ The **কি খাবো?** MVP is built and verified locally: a Vite + React i
 - [ ] Check on real phones
 - [ ] Desktop layout improvements (see known issues)
 - [ ] Re-run axe-core and Lighthouse on the new screens
-- [ ] Connect the Redis database to the project in Vercel for the live counters
+- [ ] Switch the live counters to Upstash for Redis in Vercel (all-time totals)
 
 ## Known issues
 
